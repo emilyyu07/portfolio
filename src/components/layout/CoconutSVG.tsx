@@ -1,0 +1,46 @@
+export function CoconutSVG() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <path
+        d="M10 38 Q10 56 32 58 Q54 56 54 38 Q54 22 32 22 Q10 22 10 38Z"
+        fill="#8B5E3C"
+      />
+      <path
+        d="M14 38 Q14 53 32 55 Q50 53 50 38 Q50 25 32 25 Q14 25 14 38Z"
+        fill="#C49A6C"
+      />
+      <path
+        d="M17 38 Q17 51 32 52 Q47 51 47 38 Q47 27 32 27 Q17 27 17 38Z"
+        fill="#F5EDD8"
+      />
+      <ellipse cx="32" cy="42" rx="10" ry="6" fill="#E8F0E8" opacity={0.7} />
+      <path
+        d="M22 32 Q32 30 42 32"
+        stroke="#D4C4A0"
+        strokeWidth="0.8"
+        fill="none"
+        opacity={0.6}
+      />
+      <path
+        d="M19 36 Q32 33 45 36"
+        stroke="#D4C4A0"
+        strokeWidth="0.7"
+        fill="none"
+        opacity={0.5}
+      />
+      <path
+        d="M10 38 Q12 28 16 24 L19 27 L22 22 L26 26 L29 21 L32 25 L35 20 L38 25 L41 21 L45 26 L48 23 L52 28 Q54 32 54 38"
+        stroke="#6B4423"
+        strokeWidth="1.2"
+        fill="none"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 38 Q10 56 32 58 Q54 56 54 38"
+        stroke="#6B4423"
+        strokeWidth="1"
+        fill="none"
+      />
+    </svg>
+  );
+}
