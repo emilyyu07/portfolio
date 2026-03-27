@@ -1,19 +1,15 @@
-import { PolaroidBanff, PolaroidSunset } from "@/components/decorations/Polaroid";
-import { LandingContent } from "@/components/hero/LandingContent";
-import {
-  hasPolaroidBanff,
-  hasPolaroidSunset,
-} from "@/lib/polaroidAssets";
+import { About } from "@/components/About";
+import { Hero } from "@/components/Hero";
+import { Misc } from "@/components/Misc";
+import { Projects } from "@/components/Projects";
 
 export default function HomePage() {
-  const useSunset = hasPolaroidSunset();
-  const useBanff = hasPolaroidBanff();
-
   return (
     <>
-      <PolaroidSunset usePhoto={useSunset} />
-      <PolaroidBanff usePhoto={useBanff} />
-      <LandingContent />
+      <Hero />
+      <About />
+      <Projects />
+      <Misc />
     </>
   );
 }

@@ -1,61 +1,13 @@
 import type { Metadata } from "next";
-import {
-  Caveat,
-  Dancing_Script,
-  DM_Mono,
-  Lora,
-} from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
+import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
+import { ThemeScript } from "@/components/ThemeScript";
+import { siteData } from "@/lib/siteData";
 import "./globals.css";
-import { BirchBackground } from "@/components/decorations/BirchBackground";
-import { GoldenHourLight } from "@/components/decorations/GoldenHourLight";
-import { PressedFlowersTR } from "@/components/decorations/PressedFlowersTR";
-import { PressedFlowersBL } from "@/components/decorations/PressedFlowersBL";
-import { ScrapCorner } from "@/components/decorations/ScrapCorner";
-import { Nav } from "@/components/layout/Nav";
-import { Footer } from "@/components/layout/Footer";
-import { siteUrl } from "@/lib/siteConfig";
-
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dancing",
-});
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-caveat",
-});
-
-const lora = Lora({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-lora",
-});
-
-const dmMono = DM_Mono({
-  subsets: ["latin"],
-  weight: ["300"],
-  variable: "--font-dm-mono",
-});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: "Emily Yu",
-    template: "%s · Emily Yu",
-  },
-  description:
-    "Computer engineering student at the University of Waterloo — portfolio.",
-  icons: {
-    icon: "/favicon.svg",
-  },
-  openGraph: {
-    title: "Emily Yu",
-    description: "Computer engineering @ UWaterloo",
-    url: siteUrl,
-  },
+  title: "emily yu",
+  description: "emily yu portfolio",
 };
 
 export default function RootLayout({
@@ -63,25 +15,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const fontVars = `${dancingScript.variable} ${caveat.variable} ${lora.variable} ${dmMono.variable}`;
-
   return (
-    <html lang="en" className={fontVars}>
-      <body className="min-h-screen overflow-x-hidden font-lora text-text-main antialiased">
-        <BirchBackground />
-        <GoldenHourLight />
-        <PressedFlowersTR />
-        <PressedFlowersBL />
-        <ScrapCorner corner="tr" />
-        <ScrapCorner corner="bl" />
-
-        <div className="relative z-[4] flex min-h-screen flex-col">
-          <Nav />
-          <main className="flex flex-1 flex-col">{children}</main>
-          <Footer />
-        </div>
-        <Analytics />
+    <html lang="en" data-theme="light" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://rsms.me" />
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <ThemeScript />
+      </head>
+      <body
+        style={{ ["--sunset-image" as string]: `url("${siteData.sunsetImage}")` }}
+        className="bg-[var(--bg)] font-sans text-[var(--text)] antialiased transition-[background-color,color] duration-300"
+      >
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
 }
+
