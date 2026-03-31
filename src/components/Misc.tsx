@@ -31,6 +31,9 @@ export function Misc() {
     >
       <div className="mb-10">
         <p className="terminal-label">e:\ misc</p>
+        <p className="mt-5 max-w-[34rem] text-[1.03rem] leading-8 text-[var(--text)] opacity-[0.82]">
+            a few things that aren&apos;t on my resume.
+        </p>
       </div>
 
       <div className="grid gap-[1.8rem] lg:grid-cols-[1fr_1.04fr_1fr]">

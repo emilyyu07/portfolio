@@ -27,7 +27,7 @@ export function Projects() {
         <div>
           <p className="terminal-label">e:\ projects</p>
           <p className="mt-5 max-w-[34rem] text-[1.03rem] leading-8 text-[var(--text)] opacity-[0.82]">
-            selected work focused on quiet interfaces, reliable systems, and details that feel deliberate.
+            here&apos;s what i&apos;ve been building.
           </p>
         </div>
       </div>

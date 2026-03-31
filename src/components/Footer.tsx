@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   EmailIcon,
   GitHubIcon,
@@ -37,8 +37,47 @@ function getClockString() {
   return formatter.format(new Date()).toLowerCase();
 }
 
+function TypewriterClock({ text, start }: { text: string; start: boolean }) {
+  const [visibleText, setVisibleText] = useState("");
+  const [typingDone, setTypingDone] = useState(false);
+  const hasStartedRef = useRef(false);
+
+  useEffect(() => {
+    if (!start || hasStartedRef.current) {
+      return;
+    }
+
+    hasStartedRef.current = true;
+
+    let index = 0;
+    const timer = window.setInterval(() => {
+      index += 1;
+      setVisibleText(text.slice(0, index));
+
+      if (index >= text.length) {
+        window.clearInterval(timer);
+        setTypingDone(true);
+      }
+    }, 40);
+
+    return () => window.clearInterval(timer);
+  }, [start, text]);
+
+  if (!start) {
+    return null;
+  }
+
+  return (
+    <>
+      {typingDone ? text : visibleText}
+      <span className="type-cursor">|</span>
+    </>
+  );
+}
+
 export function Footer() {
   const [clock, setClock] = useState(getClockString);
+  const [clockStarted, setClockStarted] = useState(false);
 
   useEffect(() => {
     const timer = window.setInterval(() => setClock(getClockString()), 1000);
@@ -51,6 +90,7 @@ export function Footer() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={sectionReveal}
+      onViewportEnter={() => setClockStarted(true)}
       className="relative mt-10 overflow-hidden"
     >
       <div
@@ -67,9 +107,8 @@ export function Footer() {
           >
             {siteData.email}
           </a>
-          <p className="mt-8 courier-text text-[0.95rem] tracking-[0.18em] text-[#D6D6D6]">
-            {">_"} {clock} est
-            <span className="type-cursor">|</span>
+          <p className="mt-8 min-h-[1.2em] courier-text text-[0.95rem] tracking-[0.18em] text-[#D6D6D6]">
+            {">_"} <TypewriterClock text={`${clock} est`} start={clockStarted} />
           </p>
         </div>
 

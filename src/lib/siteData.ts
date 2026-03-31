@@ -7,7 +7,7 @@ export const siteData = {
     "open to fall 2026 internships!",
   ],
   intro:
-    "i design and build interfaces that feel measured, warm, and technically clear. i care about small interactions, strong front-end systems, and work that feels human without trying too hard.",
+    "hi, i’m emily, a computer engineering student at the university of waterloo focused on full-stack development and exploring AI/ML. i’m always looking to learn new technologies, build, and grow through the process. i love connecting with people who are curious and driven, so feel free to reach out!",
   experiences: [
     {
       role: "software developer intern",
@@ -27,7 +27,7 @@ export const siteData = {
   ],
   projects: [
     {
-      name: "/price delta",
+      name: "\\price delta",
       stack: "node.js | typescript | react | postgreSQL",
       description:
         "a quiet planning workspace for coordinating deadlines, notes, and shared study sessions without clutter.",
@@ -36,7 +36,7 @@ export const siteData = {
         "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80",
     },
     {
-      name: "/strider",
+      name: "\\strider",
       stack: "python | react | postgreSQL",
       description:
         "a field journal for walks and hikes, pairing route history with short reflections and weather-aware memory prompts.",
@@ -45,7 +45,7 @@ export const siteData = {
         "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80",
     },
     {
-      name: "/new guelph times games",
+      name: "\\new guelph times games",
       stack: "java | react | ...",
       description:
         "a lightweight ingredient tracker that reads grocery images and suggests practical meals with minimal manual input.",
