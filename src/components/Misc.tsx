@@ -1,10 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
-import { StravaIcon } from "@/components/Icons";
-import { siteData } from "@/lib/siteData";
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const sectionReveal = {
   hidden: { opacity: 0, y: 22 },
@@ -15,146 +13,610 @@ const sectionReveal = {
   },
 };
 
-export function Misc() {
-  const [plantHovered, setPlantHovered] = useState(false);
-  const [shoesHovered, setShoesHovered] = useState(false);
-  const [recordHovered, setRecordHovered] = useState(false);
+const miscConfig = {
+  currentTerm: "1B",
+  todoItems: [
+    { text: "keep building!", done: false },
+  ],
+  lastRun: {
+    distance: "5.2 km",
+    time: "28:14",
+  },
+  strava: "https://www.strava.com/athletes/yourhandle",
+  spotify: "https://open.spotify.com/user/yourhandle",
+} as const;
+
+const assetConfig = {
+  succulent: {
+    src: "/images/misc/succulent.png",
+    alt: "Succulent",
+    label: "succulent",
+    className: "misc-succulent",
+  },
+  hokas: {
+    src: "/images/misc/hokas.png",
+    alt: "White Hoka running shoes",
+    label: "hokas",
+    className: "misc-hokas",
+  },
+  airpods: {
+    src: "/images/misc/airpods.png",
+    alt: "AirPods case",
+    label: "airpods",
+    className: "misc-airpods",
+  },
+  raspberries: {
+    src: "/images/misc/raspberries.png",
+    alt: "Bowl of raspberries",
+    label: "raspberries",
+    className: "misc-raspberries",
+  },
+} as const;
+
+function MiscAsset({
+  src,
+  alt,
+  label,
+  className,
+}: {
+  src: string;
+  alt: string;
+  label: string;
+  className: string;
+}) {
+  const [loaded, setLoaded] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   return (
-    <motion.section
-      id="misc"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.32 }}
-      variants={sectionReveal}
-      className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12"
-    >
-      <div className="mb-10">
-        <p className="terminal-label">e:\ misc</p>
-        <p className="mt-5 max-w-[34rem] text-[1.03rem] leading-8 text-[var(--text)] opacity-[0.82]">
-            a few things that aren&apos;t on my resume.
-        </p>
-      </div>
+    <div className={`misc-object ${className}`}>
+      {!loaded && (
+        <div className="misc-placeholder" aria-hidden="true">
+          {label}
+        </div>
+      )}
+      {!failed && (
+        <Image
+          src={src}
+          alt={alt}
+          width={400}
+          height={400}
+          unoptimized
+          draggable={false}
+          className="misc-asset-image"
+          style={{ display: loaded ? "block" : "none" }}
+          onLoad={() => setLoaded(true)}
+          onError={() => setFailed(true)}
+        />
+      )}
+    </div>
+  );
+}
 
-      <div className="grid gap-[1.8rem] lg:grid-cols-[1fr_1.04fr_1fr]">
-        <div
-          className="misc-object group relative overflow-hidden border border-[var(--border)] bg-[var(--panel)]"
-          onMouseEnter={() => setPlantHovered(true)}
-          onMouseLeave={() => setPlantHovered(false)}
-          onFocus={() => setPlantHovered(true)}
-          onBlur={() => setPlantHovered(false)}
+export function Misc() {
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const revealTextRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    const revealText = revealTextRef.current;
+
+    if (!stage || !revealText) {
+      return;
+    }
+
+    const reveals = {
+      ".misc-succulent": { text: "still alive :)", color: "#4A7C59" },
+      ".misc-raspberries": { text: "have a good day :)", color: "#C8464A" },
+    } as const;
+
+    const handleMouseOver = (event: MouseEvent) => {
+      const target = event.target;
+
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      for (const [selector, data] of Object.entries(reveals)) {
+        if (target.closest(selector)) {
+          revealText.textContent = data.text;
+          revealText.style.color = data.color;
+          revealText.classList.add("visible");
+          return;
+        }
+      }
+    };
+
+    const handleMouseOut = (event: MouseEvent) => {
+      const target = event.target;
+      const relatedTarget = event.relatedTarget;
+
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      for (const selector of Object.keys(reveals)) {
+        const currentMatch = target.closest(selector);
+        const nextMatch = relatedTarget instanceof Element ? relatedTarget.closest(selector) : null;
+
+        if (currentMatch && currentMatch !== nextMatch) {
+          revealText.classList.remove("visible");
+          return;
+        }
+      }
+    };
+
+    stage.addEventListener("mouseover", handleMouseOver);
+    stage.addEventListener("mouseout", handleMouseOut);
+
+    return () => {
+      stage.removeEventListener("mouseover", handleMouseOver);
+      stage.removeEventListener("mouseout", handleMouseOut);
+    };
+  }, []);
+
+  return (
+    <section id="misc" className="misc-section">
+      <div className="misc-inner">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.32 }}
+          variants={sectionReveal}
+          className="misc-intro"
         >
-          <div className="relative aspect-[4/5]">
-            <Image
-              src={siteData.misc.plantImage}
-              alt="plant"
-              fill
-              sizes="(max-width: 1024px) 100vw, 32vw"
-              className="object-cover saturate-[0.78] transition-[transform,filter] duration-300 ease-out group-hover:saturate-100"
-            />
-          </div>
-          <div className="absolute inset-x-5 bottom-5 courier-text text-[0.82rem] tracking-[0.18em] text-[var(--bg)] transition-colors duration-300 group-hover:text-[#4D8A59]">
-            {siteData.misc.plantText}
-          </div>
-        </div>
+          <p className="misc-header">e:\ misc</p>
+          <p className="misc-blurb">a few things that aren&apos;t on my resume.</p>
+        </motion.div>
 
-        <div className="grid gap-[1.8rem]">
-          <div className="flex min-h-[14rem] items-center border border-[var(--border)] bg-[var(--panel)] p-8">
-            <motion.p
-              animate={{
-                opacity: plantHovered ? 1 : 0,
-                y: plantHovered ? 0 : 8,
-              }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="text-[clamp(2rem,4vw,3.2rem)] font-[300] leading-[1.02] tracking-[-0.06em] text-[var(--text)]"
-            >
-              hope you have
-              <br />
-              a good day :)
-            </motion.p>
+        <div ref={stageRef} className="misc-stage">
+          <div ref={revealTextRef} className="misc-reveal-text" aria-hidden="true" />
+
+          <div className="misc-slot misc-slot-succulent">
+            <MiscAsset {...assetConfig.succulent} />
           </div>
 
-          <div
-            className="misc-object relative overflow-hidden border border-[var(--border)] bg-[var(--panel)]"
-            onMouseEnter={() => setShoesHovered(true)}
-            onMouseLeave={() => setShoesHovered(false)}
-          >
-            <AnimatePresence>
-              {shoesHovered && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.22, ease: "easeOut" }}
-                  className="absolute left-1/2 top-5 z-10 flex -translate-x-1/2 items-center gap-2 border border-[var(--border-hover)] bg-[var(--bg)] px-3 py-2 text-[0.78rem] text-[var(--text)] backdrop-blur-sm"
-                >
-                  <StravaIcon className="h-4 w-4" />
-                  <span className="courier-text tracking-[0.14em]">{siteData.misc.stravaUsername}</span>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <div className="relative aspect-[16/10]">
-              <Image
-                src={siteData.misc.shoesImage}
-                alt="running shoes"
-                fill
-                sizes="(max-width: 1024px) 100vw, 32vw"
-                className="object-cover transition-transform duration-300 ease-out hover:scale-[1.02]"
-              />
-            </div>
+          <div className="misc-slot misc-slot-hokas">
+            <MiscAsset {...assetConfig.hokas} />
+            <a href={miscConfig.strava} target="_blank" rel="noreferrer" className="hokas-stat">
+              last run&nbsp;&nbsp;{miscConfig.lastRun.distance}&nbsp;&nbsp;{miscConfig.lastRun.time}
+            </a>
           </div>
-        </div>
 
-        <div className="grid gap-[1.8rem]">
-          <div
-            className="misc-object relative overflow-hidden border border-[var(--border)] bg-[var(--panel)]"
-            onMouseEnter={() => setRecordHovered(true)}
-            onMouseLeave={() => setRecordHovered(false)}
-          >
-            <AnimatePresence>
-              {recordHovered && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.24, ease: "easeOut" }}
-                  className="absolute left-5 top-5 z-10 w-[13rem] border border-[#1DB954]/30 bg-[#121212]/92 p-4 text-[#F6F6F6] shadow-[0_18px_45px_rgba(0,0,0,0.28)] backdrop-blur"
-                >
-                  <p className="courier-text text-[0.72rem] tracking-[0.2em] text-[#94D3A2]">
-                    currently spinning
-                  </p>
-                  <p className="mt-3 text-[0.82rem] text-[#A6A6A6]">35 songs</p>
-                  <p className="mt-5 text-[1rem] font-medium">{siteData.misc.songTitle}</p>
-                  <p className="mt-1 text-[0.9rem] text-[#C6C6C6]">{siteData.misc.songArtist}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <div className="relative aspect-[16/10]">
-              <Image
-                src={siteData.misc.recordImage}
-                alt="record player"
-                fill
-                sizes="(max-width: 1024px) 100vw, 32vw"
-                className="object-cover"
-              />
+          <div className="misc-slot misc-slot-sticky">
+            <div className="sticky-note">
+              <p className="sticky-note-header">{`> to-do: ${miscConfig.currentTerm}`}</p>
+              <ul className="sticky-note-list" aria-label="Current term to-do list">
+                {miscConfig.todoItems.map((item) => (
+                  <li key={item.text} className={item.done ? "sticky-note-item is-done" : "sticky-note-item"}>
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          <div className="overflow-hidden border border-[var(--border)] bg-[var(--panel)]">
-            <div className="relative aspect-[16/10]">
-              <Image
-                src={siteData.misc.berriesImage}
-                alt="bowl of raspberries"
-                fill
-                sizes="(max-width: 1024px) 100vw, 32vw"
-                className="object-cover"
-              />
-            </div>
+          <div className="misc-slot misc-slot-airpods">
+            <MiscAsset {...assetConfig.airpods} />
+            <a href={miscConfig.spotify} target="_blank" rel="noreferrer" className="airpods-tooltip">
+              <span className="spotify-dot" aria-hidden="true" />
+              <span>currently listening</span>
+            </a>
+          </div>
+
+          <div className="misc-slot misc-slot-raspberries">
+            <MiscAsset {...assetConfig.raspberries} />
           </div>
         </div>
       </div>
-    </motion.section>
+
+      <style jsx>{`
+        .misc-section {
+          --section-pad-y: 120px;
+          --text-muted: var(--muted);
+          min-height: 700px;
+          padding: var(--section-pad-y) 0;
+          background: var(--bg);
+        }
+
+        .misc-inner {
+          width: 100%;
+          max-width: 1120px;
+          margin: 0 auto;
+          font-family: "Intel One Mono", "Courier New", monospace;
+          font-weight: 400;
+        }
+
+        .misc-intro {
+          max-width: 43rem;
+          margin: 0 0 80px;
+          padding: 0 20px;
+        }
+
+        .misc-header {
+          margin: 0;
+          font-family: "Courier New", Courier, monospace;
+          font-size: 0.96rem;
+          font-weight: 400;
+          letter-spacing: 0.24em;
+          color: var(--text);
+        }
+
+        .misc-blurb {
+          margin: 20px 0 0;
+          max-width: 34rem;
+          font-family: "InterVariable", Inter, "Helvetica Neue", Arial, sans-serif;
+          font-size: 1.03rem;
+          font-weight: 400;
+          line-height: 2rem;
+          color: var(--text);
+          opacity: 0.82;
+        }
+
+        .misc-stage {
+          position: relative;
+          width: 100%;
+          max-width: 900px;
+          height: 520px;
+          margin: 0 auto;
+        }
+
+        .misc-slot {
+          position: absolute;
+        }
+
+        .misc-slot-succulent {
+          top: 30px;
+          left: 0;
+          width: 175px;
+        }
+
+        .misc-slot-hokas {
+          bottom: 50px;
+          left: 100px;
+          width: 230px;
+        }
+
+        .misc-slot-sticky {
+          top: 50px;
+          left: 50%;
+          width: 140px;
+          margin-left: -70px;
+          z-index: 2;
+        }
+
+        .misc-slot-airpods {
+          top: 70px;
+          right: 60px;
+          width: 105px;
+        }
+
+        .misc-slot-raspberries {
+          right: 30px;
+          bottom: 40px;
+          width: 135px;
+        }
+
+        .misc-object {
+          position: relative;
+          width: 100%;
+          pointer-events: all;
+          cursor: none;
+          user-select: none;
+          transition: transform 0.25s ease;
+        }
+
+        .misc-asset-image {
+          display: block;
+          width: 100%;
+          height: auto;
+          filter: none;
+          user-select: none;
+          -webkit-user-drag: none;
+        }
+
+        .misc-placeholder {
+          display: grid;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          place-items: center;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          font-family: "Intel One Mono", "Courier New", monospace;
+          font-size: 11px;
+          font-weight: 400;
+          color: var(--text-muted);
+          text-transform: lowercase;
+        }
+
+        .misc-succulent {
+          transform: rotate(-4deg);
+        }
+
+        .misc-succulent:hover {
+          transform: rotate(-4deg) translateY(-8px);
+        }
+
+        .misc-hokas {
+          transform: rotate(5deg);
+        }
+
+        .misc-hokas:hover {
+          transform: rotate(5deg) translateY(-8px);
+        }
+
+        .sticky-note {
+          width: 140px;
+          padding: 14px 16px 18px;
+          background: #fafad2;
+          font-family: "Intel One Mono", "Courier New", monospace;
+          font-size: 12px;
+          line-height: 1.8;
+          color: #333333;
+          box-shadow:
+            1px 2px 8px rgba(0, 0, 0, 0.1),
+            3px 3px 0 rgba(0, 0, 0, 0.04);
+          transform: rotate(-3deg);
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          pointer-events: all;
+          cursor: none;
+          user-select: none;
+        }
+
+        .sticky-note:hover {
+          transform: rotate(-3deg) translateY(-6px);
+          box-shadow:
+            2px 6px 16px rgba(0, 0, 0, 0.13),
+            3px 3px 0 rgba(0, 0, 0, 0.04);
+        }
+
+        .sticky-note-header {
+          margin: 0;
+          font-weight: 400;
+        }
+
+        .sticky-note-list {
+          margin: 14px 0 0;
+          padding: 0;
+          list-style: none;
+        }
+
+        .sticky-note-item {
+          opacity: 1;
+          text-decoration: none;
+        }
+
+        .sticky-note-item.is-done {
+          opacity: 0.45;
+          text-decoration: line-through;
+        }
+
+        .misc-airpods {
+          transform: rotate(8deg);
+        }
+
+        .misc-airpods:hover {
+          transform: rotate(8deg) translateY(-8px);
+        }
+
+        .misc-raspberries {
+          transform: rotate(-5deg);
+        }
+
+        .misc-raspberries:hover {
+          transform: rotate(-5deg) translateY(-8px);
+        }
+
+        .misc-reveal-text {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-family: "Intel One Mono", "Courier New", monospace;
+          font-size: 13px;
+          font-weight: 400;
+          letter-spacing: 0.05em;
+          opacity: 0;
+          transition: opacity 0.3s ease, color 0.3s ease;
+          pointer-events: none;
+          white-space: nowrap;
+          z-index: 10;
+        }
+
+        .misc-reveal-text.visible {
+          opacity: 1;
+        }
+
+        .hokas-stat {
+          position: absolute;
+          left: 0;
+          bottom: -32px;
+          font-family: "Intel One Mono", "Courier New", monospace;
+          font-size: 11px;
+          font-weight: 400;
+          color: var(--text-muted);
+          letter-spacing: 0.04em;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+          white-space: nowrap;
+          text-decoration: none;
+        }
+
+        .misc-slot-hokas:hover .hokas-stat {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .airpods-tooltip {
+          position: absolute;
+          top: -30px;
+          right: -20px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-family: "Intel One Mono", "Courier New", monospace;
+          font-size: 11px;
+          font-weight: 400;
+          color: var(--text-muted);
+          letter-spacing: 0.03em;
+          opacity: 0;
+          transition: opacity 0.25s ease;
+          pointer-events: none;
+          white-space: nowrap;
+          text-decoration: none;
+        }
+
+        .spotify-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #1db954;
+          flex-shrink: 0;
+        }
+
+        .misc-slot-airpods:hover .airpods-tooltip {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        @media (min-width: 768px) {
+          .misc-intro {
+            padding-left: 48px;
+            padding-right: 48px;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .misc-stage {
+            height: auto;
+            min-height: 600px;
+          }
+
+          .misc-slot-succulent {
+            top: 20px;
+            left: 0;
+            width: 140px;
+          }
+
+          .misc-slot-hokas {
+            bottom: 20px;
+            left: 20px;
+            width: 184px;
+          }
+
+          .misc-slot-sticky {
+            top: 20px;
+            left: 50%;
+            width: 140px;
+            margin-left: -70px;
+          }
+
+          .misc-slot-airpods {
+            top: 20px;
+            right: 10px;
+            width: 84px;
+          }
+
+          .misc-slot-raspberries {
+            right: 10px;
+            bottom: 20px;
+            width: 108px;
+          }
+
+          .misc-reveal-text {
+            font-size: 12px;
+          }
+        }
+
+        @media (max-width: 479px) {
+          .misc-intro {
+            max-width: none;
+          }
+
+          .misc-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            min-height: 600px;
+            padding: 56px 0 80px;
+          }
+
+          .misc-slot {
+            position: static;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+          }
+
+          .misc-slot-succulent,
+          .misc-slot-hokas,
+          .misc-slot-sticky,
+          .misc-slot-airpods,
+          .misc-slot-raspberries {
+            width: auto;
+          }
+
+          .misc-succulent,
+          .misc-hokas,
+          .misc-airpods,
+          .misc-raspberries,
+          .sticky-note {
+            transform: none;
+          }
+
+          .misc-succulent:hover,
+          .misc-hokas:hover,
+          .misc-airpods:hover,
+          .misc-raspberries:hover,
+          .sticky-note:hover {
+            transform: translateY(-8px);
+          }
+
+          .misc-slot-succulent .misc-object {
+            width: 140px;
+          }
+
+          .misc-slot-hokas {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+          }
+
+          .misc-slot-hokas .misc-object {
+            width: 184px;
+          }
+
+          .hokas-stat {
+            position: static;
+            opacity: 0;
+          }
+
+          .misc-slot-airpods {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+          }
+
+          .misc-slot-airpods .misc-object {
+            width: 84px;
+          }
+
+          .airpods-tooltip {
+            position: static;
+            opacity: 0;
+          }
+
+          .misc-slot-raspberries .misc-object {
+            width: 108px;
+          }
+
+          .misc-reveal-text {
+            top: 32px;
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
+    </section>
   );
 }
