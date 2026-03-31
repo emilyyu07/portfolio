@@ -35,7 +35,7 @@ export function Misc() {
 
       <div className="grid gap-[1.8rem] lg:grid-cols-[1fr_1.04fr_1fr]">
         <div
-          className="group relative overflow-hidden border border-[var(--border)] bg-[var(--panel)]"
+          className="misc-object group relative overflow-hidden border border-[var(--border)] bg-[var(--panel)]"
           onMouseEnter={() => setPlantHovered(true)}
           onMouseLeave={() => setPlantHovered(false)}
           onFocus={() => setPlantHovered(true)}
@@ -72,7 +72,7 @@ export function Misc() {
           </div>
 
           <div
-            className="relative overflow-hidden border border-[var(--border)] bg-[var(--panel)]"
+            className="misc-object relative overflow-hidden border border-[var(--border)] bg-[var(--panel)]"
             onMouseEnter={() => setShoesHovered(true)}
             onMouseLeave={() => setShoesHovered(false)}
           >
@@ -105,7 +105,7 @@ export function Misc() {
 
         <div className="grid gap-[1.8rem]">
           <div
-            className="relative overflow-hidden border border-[var(--border)] bg-[var(--panel)]"
+            className="misc-object relative overflow-hidden border border-[var(--border)] bg-[var(--panel)]"
             onMouseEnter={() => setRecordHovered(true)}
             onMouseLeave={() => setRecordHovered(false)}
           >

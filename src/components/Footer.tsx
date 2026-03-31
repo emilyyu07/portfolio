@@ -63,7 +63,7 @@ export function Footer() {
         <div>
           <a
             href={`mailto:${siteData.email}`}
-            className="text-[clamp(2.8rem,7vw,5.8rem)] font-[300] leading-[0.94] tracking-[-0.06em] transition-opacity duration-300 hover:opacity-80"
+            className="social-wrap text-[clamp(2.8rem,7vw,5.8rem)] font-[300] leading-[0.94] tracking-[-0.06em] transition-opacity duration-300 hover:opacity-80"
           >
             {siteData.email}
           </a>
@@ -85,7 +85,7 @@ export function Footer() {
                   aria-label={social.label}
                   target={social.href.startsWith("mailto:") ? undefined : "_blank"}
                   rel={social.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                  className="text-[#D6D6D6] transition-colors duration-300 hover:text-white"
+                  className="social-wrap text-[#D6D6D6] transition-colors duration-300 hover:text-white"
                 >
                   <Icon className="h-[18px] w-[18px]" />
                 </a>
@@ -95,7 +95,7 @@ export function Footer() {
 
           <div className="space-y-3 text-left md:text-right">
             <p className="courier-text text-[0.82rem] tracking-[0.2em] text-[#D6D6D6]">
-              reach out -
+              reach out ^
             </p>
             <p className="courier-text text-[0.78rem] tracking-[0.18em] text-[#BDBDBD]">
               © 2026 emily yu

@@ -87,7 +87,48 @@ img {
   animation: cursorBlink 0.8s step-end infinite;
 }
 
+.cursor-terminal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  display: none;
+  pointer-events: none;
+  user-select: none;
+  font-family: "Intel One Mono", "Courier New", monospace;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text);
+  transform: translate(0px, -13px);
+  animation: termBlink 1s step-end infinite;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html[data-terminal-cursor="enabled"],
+  html[data-terminal-cursor="enabled"] * ,
+  html[data-terminal-cursor="enabled"] *::before,
+  html[data-terminal-cursor="enabled"] *::after {
+    cursor: none !important;
+  }
+
+  html[data-terminal-cursor="enabled"] .cursor-terminal {
+    display: block;
+  }
+}
+
 @keyframes cursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes termBlink {
   0%,
   100% {
     opacity: 1;

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { TerminalCursor } from "@/components/TerminalCursor";
 import { ThemeScript } from "@/components/ThemeScript";
 import { siteData } from "@/lib/siteData";
 import "./globals.css";
@@ -29,8 +30,8 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <TerminalCursor />
       </body>
     </html>
   );
 }
-

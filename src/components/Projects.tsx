@@ -41,7 +41,7 @@ export function Projects() {
             rel="noreferrer"
             whileHover={{ y: -5 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
-            className="group flex flex-col overflow-hidden rounded-[1.4rem] border border-[var(--border)] bg-[var(--panel)] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.03)] transition-[border-color,box-shadow,background-color] duration-300 hover:border-[var(--border-hover)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)]"
+            className="project-card group flex flex-col overflow-hidden rounded-[1.4rem] border border-[var(--border)] bg-[var(--panel)] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.03)] transition-[border-color,box-shadow,background-color] duration-300 hover:border-[var(--border-hover)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)]"
           >
             <div className="relative aspect-[5/4] overflow-hidden rounded-[1rem]">
               <Image
