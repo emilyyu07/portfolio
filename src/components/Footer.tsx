@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import {
   EmailIcon,
@@ -15,6 +16,15 @@ const iconMap = {
   Email: EmailIcon,
   Instagram: InstagramIcon,
 } as const;
+
+const sectionReveal = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 function getClockString() {
   const formatter = new Intl.DateTimeFormat("en-US", {
@@ -36,7 +46,13 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="relative mt-10 overflow-hidden">
+    <motion.footer
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={sectionReveal}
+      className="relative mt-10 overflow-hidden"
+    >
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "var(--sunset-image)" }}
@@ -87,6 +103,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

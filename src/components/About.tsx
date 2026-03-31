@@ -1,39 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import { siteData } from "@/lib/siteData";
 
+const sectionReveal = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 export function About() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const node = sectionRef.current;
-
-    if (!node) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.18 }
-    );
-
-    observer.observe(node);
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
+    <motion.section
       id="about"
-      ref={sectionRef}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.32 }}
+      variants={sectionReveal}
       className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12"
     >
       <div className="max-w-[43rem]">
@@ -42,12 +28,9 @@ export function About() {
       </div>
 
       <div className="mt-14 grid gap-[1.8rem]">
-        {siteData.experiences.map((experience, index) => (
-          <motion.article
+        {siteData.experiences.map((experience) => (
+          <article
             key={`${experience.role}-${experience.company}`}
-            initial={{ opacity: 0, y: 22 }}
-            animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
-            transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.13 }}
             className="grid gap-5 border-b border-[var(--border)] pb-7 md:grid-cols-[1.35fr_0.9fr] md:items-start"
           >
             <div>
@@ -65,13 +48,9 @@ export function About() {
                 {experience.timeFrame}
               </span>
             </div>
-          </motion.article>
+          </article>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
-
-
-
-

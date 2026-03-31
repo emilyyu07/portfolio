@@ -6,13 +6,29 @@ import { useState } from "react";
 import { StravaIcon } from "@/components/Icons";
 import { siteData } from "@/lib/siteData";
 
+const sectionReveal = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 export function Misc() {
   const [plantHovered, setPlantHovered] = useState(false);
   const [shoesHovered, setShoesHovered] = useState(false);
   const [recordHovered, setRecordHovered] = useState(false);
 
   return (
-    <section id="misc" className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12">
+    <motion.section
+      id="misc"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.32 }}
+      variants={sectionReveal}
+      className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12"
+    >
       <div className="mb-10">
         <p className="terminal-label">e:\ misc</p>
       </div>
@@ -136,7 +152,6 @@ export function Misc() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
-

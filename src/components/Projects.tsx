@@ -4,9 +4,25 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { siteData } from "@/lib/siteData";
 
+const sectionReveal = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 export function Projects() {
   return (
-    <section id="projects" className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12">
+    <motion.section
+      id="projects"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.32 }}
+      variants={sectionReveal}
+      className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12"
+    >
       <div className="mb-10 flex items-end justify-between gap-6">
         <div>
           <p className="terminal-label">e:\ projects</p>
@@ -52,6 +68,6 @@ export function Projects() {
           </motion.a>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
