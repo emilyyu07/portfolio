@@ -13,16 +13,19 @@ export const siteData = {
       role: "software developer intern",
       subtext: "internal tools",
       company: "skyjack inc.",
+      timeFrame: "jan 2026 - may 2026",
     },
     {
       role: "software developer",
       subtext: "ground station subteam",
       company: "uw orbital",
+      timeFrame: "jan 2026 - present",
     },
     {
       role: "ios developer",
       subtext: "mental health + wellness apps",
       company: "career education council",
+      timeFrame: "jun 2024 - aug 2024",
     },
   ],
   projects: [
