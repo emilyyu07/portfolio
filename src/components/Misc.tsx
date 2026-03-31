@@ -12,7 +12,7 @@ export function Misc() {
   const [recordHovered, setRecordHovered] = useState(false);
 
   return (
-    <section id="misc" className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-28 md:px-12">
+    <section id="misc" className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12">
       <div className="mb-10">
         <p className="terminal-label">e:\ misc</p>
       </div>

@@ -6,7 +6,7 @@ import { siteData } from "@/lib/siteData";
 
 export function Projects() {
   return (
-    <section id="projects" className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-28 md:px-12">
+    <section id="projects" className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12">
       <div className="mb-10 flex items-end justify-between gap-6">
         <div>
           <p className="terminal-label">e:\ projects</p>

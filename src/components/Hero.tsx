@@ -89,14 +89,14 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-[var(--bg)]" />
 
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1120px] flex-col justify-center px-5 pb-24 pt-28 md:px-12">
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1120px] flex-col justify-center px-5 pb-24 pt-24 md:px-12">
         <div className="max-w-[56rem]">
-          <h1 className="font-sans text-[clamp(4.9rem,13vw,10.5rem)] font-[500] leading-[0.9] tracking-[0.01em] text-black">
+          <h1 className="font-sans text-[clamp(4.9rem,13vw,10.5rem)] font-[400] leading-[0.9] tracking-[0.01em] text-black">
             <span className="block">emily</span>
             <span className="block">yu :)</span>
           </h1>
 
-          <div className="mt-16 space-y-3.5">
+          <div className="mt-[4.5rem] space-y-3.5">
             <TypewriterLine
               text={siteData.heroLines[0]}
               start

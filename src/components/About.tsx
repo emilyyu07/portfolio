@@ -34,7 +34,7 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-28 md:px-12"
+      className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12"
     >
       <div className="max-w-[43rem]">
         <p className="terminal-label">e:\ about</p>
