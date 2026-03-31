@@ -40,6 +40,30 @@ export function InstagramIcon(props: IconProps) {
   );
 }
 
+export function SunIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2.5" />
+      <path d="M12 19.5V22" />
+      <path d="m4.93 4.93 1.77 1.77" />
+      <path d="m17.3 17.3 1.77 1.77" />
+      <path d="M2 12h2.5" />
+      <path d="M19.5 12H22" />
+      <path d="m4.93 19.07 1.77-1.77" />
+      <path d="m17.3 6.7 1.77-1.77" />
+    </svg>
+  );
+}
+
+export function MoonIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+      <path d="M20 14.2A8 8 0 1 1 9.8 4a6.7 6.7 0 0 0 10.2 10.2Z" />
+    </svg>
+  );
+}
+
 export function StravaIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>

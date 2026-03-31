@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { siteData } from "@/lib/siteData";
 
 function TypewriterLine({
@@ -18,11 +18,19 @@ function TypewriterLine({
   onComplete?: () => void;
 }) {
   const [visibleText, setVisibleText] = useState("");
+  const hasStartedRef = useRef(false);
+  const onCompleteRef = useRef(onComplete);
 
   useEffect(() => {
-    if (!start) {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
+  useEffect(() => {
+    if (!start || hasStartedRef.current) {
       return;
     }
+
+    hasStartedRef.current = true;
 
     let index = 0;
     const timer = window.setInterval(() => {
@@ -31,17 +39,17 @@ function TypewriterLine({
 
       if (index >= text.length) {
         window.clearInterval(timer);
-        onComplete?.();
+        onCompleteRef.current?.();
       }
     }, 40);
 
     return () => window.clearInterval(timer);
-  }, [onComplete, start, text]);
+  }, [start, text]);
 
   return (
-    <div className="flex items-center gap-2 courier-text text-[clamp(0.96rem,1.8vw,1.15rem)] tracking-[0.08em]">
-      <span className="sunset-text opacity-90">{">_"}</span>
-      <span className="sunset-text min-h-[1.4em]">
+    <div className="flex items-center gap-2 courier-text text-[clamp(0.96rem,1.8vw,1.15rem)] tracking-[0.08em] text-black">
+      <span className="opacity-90">{">_"}</span>
+      <span className="min-h-[1.4em]">
         {visibleText}
         {(active || persistCursor) && <span className="type-cursor">|</span>}
       </span>
@@ -82,18 +90,19 @@ export function Hero() {
       <div className="absolute inset-0 bg-[var(--bg)]" />
 
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1120px] flex-col justify-center px-5 pb-24 pt-28 md:px-12">
-        <div className="max-w-[52rem]">
-          <h1 className="sunset-text text-[clamp(4rem,11vw,8.5rem)] font-[300] leading-[0.92] tracking-[-0.06em]">
-            emily yu :)
+        <div className="max-w-[56rem]">
+          <h1 className="font-sans text-[clamp(4.9rem,13vw,10.5rem)] font-[500] leading-[0.9] tracking-[0.01em] text-black">
+            <span className="block">emily</span>
+            <span className="block">yu :)</span>
           </h1>
 
-          <div className="mt-10 space-y-3">
+          <div className="mt-16 space-y-3.5">
             <TypewriterLine
               text={siteData.heroLines[0]}
               start
               active={!firstDone}
               persistCursor={false}
-              onComplete={() => window.setTimeout(() => setFirstDone(true), 120)}
+              onComplete={() => setFirstDone(true)}
             />
             <TypewriterLine
               text={siteData.heroLines[1]}
@@ -117,5 +126,3 @@ export function Hero() {
     </section>
   );
 }
-
-

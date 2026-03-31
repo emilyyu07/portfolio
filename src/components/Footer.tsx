@@ -1,7 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  EmailIcon,
+  GitHubIcon,
+  InstagramIcon,
+  LinkedInIcon,
+} from "@/components/Icons";
 import { siteData } from "@/lib/siteData";
+
+const iconMap = {
+  LinkedIn: LinkedInIcon,
+  GitHub: GitHubIcon,
+  Email: EmailIcon,
+  Instagram: InstagramIcon,
+} as const;
 
 function getClockString() {
   const formatter = new Intl.DateTimeFormat("en-US", {
@@ -40,22 +53,28 @@ export function Footer() {
           </a>
           <p className="mt-8 courier-text text-[0.95rem] tracking-[0.18em] text-[#D6D6D6]">
             {">_"} {clock} est
+            <span className="type-cursor">|</span>
           </p>
         </div>
 
         <div className="flex flex-col items-start justify-between gap-12 md:items-end">
-          <div className="space-y-4 text-left md:text-right">
-            {siteData.socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target={social.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={social.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                className="block courier-text text-[0.82rem] tracking-[0.2em] text-[#D6D6D6] transition-colors duration-300 hover:text-white"
-              >
-                {social.shortLabel}
-              </a>
-            ))}
+          <div className="flex flex-col items-start gap-4 md:items-end">
+            {siteData.socials.map((social) => {
+              const Icon = iconMap[social.label as keyof typeof iconMap];
+
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  target={social.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={social.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                  className="text-[#D6D6D6] transition-colors duration-300 hover:text-white"
+                >
+                  <Icon className="h-[18px] w-[18px]" />
+                </a>
+              );
+            })}
           </div>
 
           <div className="space-y-3 text-left md:text-right">
@@ -71,5 +90,3 @@ export function Footer() {
     </footer>
   );
 }
-
-

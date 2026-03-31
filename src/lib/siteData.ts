@@ -3,8 +3,8 @@ export const siteData = {
   sunsetImage:
     "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80",
   heroLines: [
-    "building calm interfaces with intention",
-    "computer engineering + thoughtful frontend systems",
+    "computer engineering @ university of waterloo",
+    "open to fall 2026 internships!",
   ],
   intro:
     "i design and build interfaces that feel measured, warm, and technically clear. i care about small interactions, strong front-end systems, and work that feels human without trying too hard.",
@@ -13,25 +13,22 @@ export const siteData = {
       role: "software developer intern",
       subtext: "internal tools",
       company: "skyjack inc.",
-      timeFrame: "jan 2024 - sep 2024",
     },
     {
       role: "software developer",
       subtext: "ground station subteam",
       company: "uw orbital",
-      timeFrame: "sep 2024 - dec 2025",
     },
     {
-      role: "iOS developer",
+      role: "ios developer",
       subtext: "mental health + wellness apps",
       company: "career education council",
-      timeFrame: "jan 2026 - may 2026",
     },
   ],
   projects: [
     {
       name: "/price delta",
-      stack: "node.js - typescript - react - postgreSQL",
+      stack: "node.js | typescript | react | postgreSQL",
       description:
         "a quiet planning workspace for coordinating deadlines, notes, and shared study sessions without clutter.",
       href: "https://github.com/emilyyu/study-sync",
@@ -40,7 +37,7 @@ export const siteData = {
     },
     {
       name: "/strider",
-      stack: "python - react - postgreSQL",
+      stack: "python | react | postgreSQL",
       description:
         "a field journal for walks and hikes, pairing route history with short reflections and weather-aware memory prompts.",
       href: "https://github.com/emilyyu/trail-notes",
@@ -49,7 +46,7 @@ export const siteData = {
     },
     {
       name: "/new guelph times games",
-      stack: "java - react - ...",
+      stack: "java | react | ...",
       description:
         "a lightweight ingredient tracker that reads grocery images and suggests practical meals with minimal manual input.",
       href: "https://github.com/emilyyu/pantry-vision",
@@ -94,4 +91,3 @@ export const siteData = {
     },
   ],
 } as const;
-
