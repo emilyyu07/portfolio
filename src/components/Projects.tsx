@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { siteData } from "@/lib/siteData";
+import { GitHubIcon } from "@/components/Icons";
 
 const sectionReveal = {
   hidden: { opacity: 0, y: 22 },
@@ -41,9 +42,9 @@ export function Projects() {
             rel="noreferrer"
             whileHover={{ y: -5 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
-            className="project-card group flex flex-col overflow-hidden rounded-[1.4rem] border border-[var(--border)] bg-[var(--panel)] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.03)] transition-[border-color,box-shadow,background-color] duration-300 hover:border-[var(--border-hover)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)]"
+            className="project-card group flex flex-col overflow-hidden rounded-[0.75rem] border border-[var(--border)] bg-[var(--panel)] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.03)] transition-[border-color,box-shadow,background-color] duration-300 hover:border-[var(--border-hover)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)]"
           >
-            <div className="relative aspect-[5/4] overflow-hidden rounded-[1rem]">
+            <div className="relative aspect-[5/4] overflow-hidden rounded-[0.5rem]">
               <Image
                 src={project.image}
                 alt={project.name}
@@ -62,7 +63,7 @@ export function Projects() {
                 {project.description}
               </p>
               <span className="meta-text mt-6 inline-flex transition-colors duration-300 group-hover:text-[var(--text)]">
-                view github
+                <GitHubIcon className="h-[18px] w-[18px]" />
               </span>
             </div>
           </motion.a>

@@ -19,8 +19,8 @@ const miscConfig = {
     { text: "keep building!", done: false },
   ],
   lastRun: {
-    distance: "5.2 km",
-    time: "28:14",
+    distance: "5.3 km",
+    time: "23:14",
   },
   strava: "https://www.strava.com/athletes/yourhandle",
   spotify: "https://open.spotify.com/user/yourhandle",
@@ -155,13 +155,16 @@ export function Misc() {
   }, []);
 
   return (
-    <section id="misc" className="misc-section">
+    <motion.section
+      id="misc"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.32 }}
+      variants={sectionReveal}
+      className="misc-section mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12"
+    >
       <div className="misc-inner">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.32 }}
-          variants={sectionReveal}
           className="misc-intro"
         >
           <p className="misc-header">e:\ misc</p>
@@ -211,25 +214,20 @@ export function Misc() {
 
       <style jsx>{`
         .misc-section {
-          --section-pad-y: 120px;
           --text-muted: var(--muted);
           min-height: 700px;
-          padding: var(--section-pad-y) 0;
           background: var(--bg);
         }
 
         .misc-inner {
           width: 100%;
-          max-width: 1120px;
-          margin: 0 auto;
-          font-family: "Intel One Mono", "Courier New", monospace;
+          font-family: Inter, sans-serif;
           font-weight: 400;
         }
 
         .misc-intro {
           max-width: 43rem;
           margin: 0 0 80px;
-          padding: 0 20px;
         }
 
         .misc-header {
@@ -320,7 +318,7 @@ export function Misc() {
           aspect-ratio: 1 / 1;
           place-items: center;
           border: 1px solid rgba(0, 0, 0, 0.12);
-          font-family: "Intel One Mono", "Courier New", monospace;
+          font-family: Inter, sans-serif;
           font-size: 11px;
           font-weight: 400;
           color: var(--text-muted);
@@ -347,7 +345,7 @@ export function Misc() {
           width: 140px;
           padding: 14px 16px 18px;
           background: #fafad2;
-          font-family: "Intel One Mono", "Courier New", monospace;
+          font-family: Inter, sans-serif;
           font-size: 12px;
           line-height: 1.8;
           color: #333333;
@@ -410,7 +408,7 @@ export function Misc() {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-family: "Intel One Mono", "Courier New", monospace;
+          font-family: Inter, sans-serif;
           font-size: 13px;
           font-weight: 400;
           letter-spacing: 0.05em;
@@ -429,7 +427,7 @@ export function Misc() {
           position: absolute;
           left: 0;
           bottom: -32px;
-          font-family: "Intel One Mono", "Courier New", monospace;
+          font-family: Inter, sans-serif;
           font-size: 11px;
           font-weight: 400;
           color: var(--text-muted);
@@ -453,7 +451,7 @@ export function Misc() {
           display: flex;
           align-items: center;
           gap: 6px;
-          font-family: "Intel One Mono", "Courier New", monospace;
+          font-family: Inter, sans-serif;
           font-size: 11px;
           font-weight: 400;
           color: var(--text-muted);
@@ -476,13 +474,6 @@ export function Misc() {
         .misc-slot-airpods:hover .airpods-tooltip {
           opacity: 1;
           pointer-events: auto;
-        }
-
-        @media (min-width: 768px) {
-          .misc-intro {
-            padding-left: 48px;
-            padding-right: 48px;
-          }
         }
 
         @media (max-width: 767px) {
@@ -617,6 +608,6 @@ export function Misc() {
           }
         }
       `}</style>
-    </section>
+    </motion.section>
   );
 }
