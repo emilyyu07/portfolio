@@ -21,6 +21,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://rsms.me" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/intel-one-mono" />
         <ThemeScript />
       </head>
       <body

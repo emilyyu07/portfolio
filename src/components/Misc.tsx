@@ -167,7 +167,7 @@ export function Misc() {
         <motion.div
           className="misc-intro"
         >
-          <p className="misc-header">e:\ misc</p>
+          <p className="misc-header">$ open ./misc</p>
           <p className="misc-blurb">a few things that aren&apos;t on my resume.</p>
         </motion.div>
 

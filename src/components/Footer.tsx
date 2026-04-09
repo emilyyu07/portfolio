@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import {
   EmailIcon,
   GitHubIcon,
@@ -26,61 +26,29 @@ const sectionReveal = {
   },
 };
 
-function getClockString() {
-  const formatter = new Intl.DateTimeFormat("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-    timeZone: "America/New_York",
-  });
-
-  return formatter.format(new Date()).toLowerCase();
-}
-
-function TypewriterClock({ text, start }: { text: string; start: boolean }) {
-  const [visibleText, setVisibleText] = useState("");
-  const [typingDone, setTypingDone] = useState(false);
-  const hasStartedRef = useRef(false);
-
+export function Footer() {
   useEffect(() => {
-    if (!start || hasStartedRef.current) {
-      return;
+    function updateFooterClock() {
+      const el = document.getElementById("footer-date-output");
+      if (!el) return;
+
+      const now = new Date();
+      const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+      const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+
+      const day = days[now.getDay()];
+      const month = months[now.getMonth()];
+      const date = String(now.getDate()).padStart(2, "0");
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
+      const year = now.getFullYear();
+
+      el.textContent = `${day} ${month} ${date} ${hours}:${minutes}:${seconds} EST ${year}`;
     }
 
-    hasStartedRef.current = true;
-
-    let index = 0;
-    const timer = window.setInterval(() => {
-      index += 1;
-      setVisibleText(text.slice(0, index));
-
-      if (index >= text.length) {
-        window.clearInterval(timer);
-        setTypingDone(true);
-      }
-    }, 40);
-
-    return () => window.clearInterval(timer);
-  }, [start, text]);
-
-  if (!start) {
-    return null;
-  }
-
-  return (
-    <>
-      {typingDone ? text : visibleText}
-      <span className="type-cursor">|</span>
-    </>
-  );
-}
-
-export function Footer() {
-  const [clock, setClock] = useState(getClockString);
-  const [clockStarted, setClockStarted] = useState(false);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => setClock(getClockString()), 1000);
+    updateFooterClock();
+    const timer = window.setInterval(updateFooterClock, 1000);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -90,7 +58,6 @@ export function Footer() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={sectionReveal}
-      onViewportEnter={() => setClockStarted(true)}
       className="relative mt-10 overflow-hidden"
     >
       <div
@@ -107,9 +74,10 @@ export function Footer() {
           >
             {siteData.email}
           </a>
-          <p className="mt-8 min-h-[1.2em] courier-text text-[0.95rem] tracking-[0.18em] text-[#D6D6D6]">
-            {">_"} <TypewriterClock text={`${clock} est`} start={clockStarted} />
-          </p>
+          <div className="footer-clock mt-8">
+            <span className="footer-clock-command">$ date</span>
+            <span className="footer-clock-output" id="footer-date-output" />
+          </div>
         </div>
 
         <div className="flex flex-col items-start justify-between gap-12 md:items-end">

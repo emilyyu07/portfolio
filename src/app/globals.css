@@ -2,9 +2,12 @@
 
 :root {
   font-family: Inter, sans-serif;
-  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  font-feature-settings: 'liga' 1, 'calt' 1;
+  --font-body: Inter, "Helvetica Neue", Arial, sans-serif;
+  --font-terminal: "Intel One Mono", "Courier New", Courier, monospace;
   --bg: #ffffff;
   --text: #0a0a0a;
+  --text-muted: #888888;
   --muted: #888888;
   --border: rgba(0, 0, 0, 0.08);
   --border-hover: rgba(0, 0, 0, 0.18);
@@ -12,6 +15,7 @@
   --highlight: rgba(201, 113, 77, 0.22);
   --nav-bg: rgba(255, 255, 255, 0.82);
   --panel: rgba(255, 255, 255, 0.7);
+  --bg-secondary: rgba(0, 0, 0, 0.03);
   --sunset-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80");
 }
 
@@ -22,6 +26,7 @@
 html[data-theme="dark"] {
   --bg: #0a0a0a;
   --text: #f0f0f0;
+  --text-muted: #666666;
   --muted: #666666;
   --border: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(255, 255, 255, 0.18);
@@ -29,6 +34,7 @@ html[data-theme="dark"] {
   --highlight: rgba(201, 113, 77, 0.22);
   --nav-bg: rgba(10, 10, 10, 0.82);
   --panel: rgba(255, 255, 255, 0.02);
+  --bg-secondary: rgba(255, 255, 255, 0.03);
 }
 
 html {
@@ -39,7 +45,7 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-body);
   transition:
     background-color 300ms ease,
     color 300ms ease,
@@ -61,21 +67,193 @@ img {
 }
 
 .courier-text {
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--font-terminal);
 }
 
 .terminal-label {
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--font-terminal);
   font-size: 0.96rem;
   letter-spacing: 0.24em;
   color: var(--text);
 }
 
 .meta-text {
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--font-terminal);
   font-size: 0.78rem;
   letter-spacing: 0.16em;
   color: var(--muted);
+}
+
+.about-command,
+.experience-command,
+.projects-command {
+  font-family: var(--font-terminal);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.about-command,
+.experience-command {
+  letter-spacing: 0.02em;
+}
+
+.projects-command {
+  letter-spacing: 0.15em;
+  margin-bottom: 48px;
+}
+
+.about-command {
+  margin-bottom: 20px;
+}
+
+.about-blurb {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  opacity: 0.85;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.about-idle {
+  font-family: var(--font-terminal);
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0;
+}
+
+.about-prompt {
+  color: var(--text-muted);
+}
+
+.about-cursor {
+  color: var(--text);
+  animation: cursorBlink 1s step-end infinite;
+}
+
+.experience-command {
+  margin-top: 64px;
+  margin-bottom: 24px;
+}
+
+.projects-list {
+  width: 100%;
+  border-top: 1px solid var(--border);
+}
+
+.project-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  transition: background 0.2s ease;
+  cursor: none;
+}
+
+.project-row:hover {
+  background: var(--bg-secondary);
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.project-dirname {
+  font-family: var(--font-terminal);
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+.project-stack {
+  font-family: var(--font-terminal);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+.project-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.8;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.project-desc-muted {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.project-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.project-arrow {
+  font-family: var(--font-terminal);
+  font-size: 16px;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.project-row:hover .project-arrow {
+  color: var(--text);
+}
+
+.project-preview {
+  width: 180px;
+  height: 120px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.project-row:hover .project-preview {
+  transform: scale(1.03);
+}
+
+.project-preview::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 10px 0 0 #ffbd2e, 20px 0 0 #28c840;
+}
+
+.project-preview::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: 14px;
+  left: 12px;
+  font-family: var(--font-terminal);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.02em;
 }
 
 .sunset-text {
@@ -91,6 +269,27 @@ img {
   display: inline-block;
   margin-left: 0.12em;
   animation: cursorBlink 0.8s step-end infinite;
+}
+
+.footer-clock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-clock-command {
+  font-family: var(--font-terminal);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.04em;
+}
+
+.footer-clock-output {
+  font-family: var(--font-terminal);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .cursor-terminal {
@@ -113,7 +312,7 @@ img {
 
 @media (hover: hover) and (pointer: fine) {
   html[data-terminal-cursor="enabled"],
-  html[data-terminal-cursor="enabled"] * ,
+  html[data-terminal-cursor="enabled"] *,
   html[data-terminal-cursor="enabled"] *::before,
   html[data-terminal-cursor="enabled"] *::after {
     cursor: none !important;
@@ -129,6 +328,7 @@ img {
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
@@ -139,6 +339,7 @@ img {
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
@@ -151,5 +352,39 @@ img {
 
   .meta-text {
     font-size: 0.72rem;
+  }
+
+  .project-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-right {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .project-preview {
+    width: 100%;
+    height: 160px;
+  }
+
+  .project-arrow {
+    align-self: flex-end;
+    margin-top: -8px;
+  }
+}
+
+@media (max-width: 479px) {
+  .project-preview {
+    height: 120px;
+  }
+
+  .project-dirname {
+    font-size: 13px;
+  }
+
+  .project-desc {
+    font-size: 13px;
   }
 }

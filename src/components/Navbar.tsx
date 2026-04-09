@@ -43,7 +43,7 @@ export function Navbar() {
             href="#top"
             className="nav-link courier-text text-[0.92rem] tracking-[0.18em] text-[var(--text)] transition-opacity duration-300 hover:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--bg)]"
           >
-            e:\
+            ~/emily
           </Link>
 
           <div className="flex items-center gap-6 md:gap-10">

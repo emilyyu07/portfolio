@@ -23,11 +23,18 @@ export function About() {
       className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12"
     >
       <div className="max-w-[43rem]">
-        <p className="terminal-label">e:\ about</p>
-        <p className="mt-5 text-[1.03rem] leading-8 text-[var(--text)] opacity-[0.82]">{siteData.intro}</p>
+        <div className="about-terminal">
+          <p className="about-command">$ cat about.md</p>
+          <p className="about-blurb">{siteData.intro}</p>
+          <p className="about-idle">
+            <span className="about-prompt">~$</span>
+            <span className="about-cursor">▌</span>
+          </p>
+        </div>
       </div>
 
       <div className="mt-14 grid gap-[1.8rem]">
+        <p className="experience-command">$ ls -l experience/</p>
         {siteData.experiences.map((experience) => (
           <article
             key={`${experience.role}-${experience.company}`}

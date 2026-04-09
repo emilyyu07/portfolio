@@ -11,7 +11,7 @@ const interactiveSelector = [
   "textarea",
   "select",
   ".misc-object",
-  ".project-card",
+  ".project-row",
   ".social-wrap",
   ".nav-link",
   ".theme-toggle",

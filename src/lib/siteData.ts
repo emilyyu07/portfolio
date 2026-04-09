@@ -7,7 +7,7 @@ export const siteData = {
     "open to fall 2026 internships!",
   ],
   intro:
-    "hi, i’m emily, a computer engineering student at the university of waterloo focused on full-stack development and exploring AI/ML. i’m always looking to learn new technologies, build, and grow through the process. i love connecting with people who are curious and driven, so feel free to reach out!",
+    "hi, i'm emily, a computer engineering student at waterloo focused on full-stack development and actively exploring AI/ML. i'm always looking to learn quickly, contribute meaningfully, and work on things that matter. currently seeking fall 2026 SWE internships.",
   experiences: [
     {
       role: "software developer intern",
@@ -30,31 +30,28 @@ export const siteData = {
   ],
   projects: [
     {
-      name: "\\price delta",
-      stack: "node.js | typescript | react | postgreSQL",
-      description:
-        "a quiet planning workspace for coordinating deadlines, notes, and shared study sessions without clutter.",
-      href: "https://github.com/emilyyu/study-sync",
-      image:
-        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80",
+      name: "price-delta/",
+      stack: "node  typescript  react  postgresql",
+      description: "TBD  Emily to provide",
+      descriptionTbd: true,
+      href: "https://github.com/emilyyu/price-delta",
+      previewName: "price-delta",
     },
     {
-      name: "\\strider",
-      stack: "python | react | postgreSQL",
-      description:
-        "a field journal for walks and hikes, pairing route history with short reflections and weather-aware memory prompts.",
-      href: "https://github.com/emilyyu/trail-notes",
-      image:
-        "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80",
+      name: "strider/",
+      stack: "python  react  postgresql",
+      description: "TBD  Emily to provide",
+      descriptionTbd: true,
+      href: "https://github.com/emilyyu/strider",
+      previewName: "strider",
     },
     {
-      name: "\\new guelph times games",
-      stack: "java | react | ...",
-      description:
-        "a lightweight ingredient tracker that reads grocery images and suggests practical meals with minimal manual input.",
-      href: "https://github.com/emilyyu/pantry-vision",
-      image:
-        "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1200&q=80",
+      name: "new-guelph-times-games/",
+      stack: "java  react",
+      description: "TBD  Emily to provide",
+      descriptionTbd: true,
+      href: "https://github.com/emilyyu/new-guelph-times-games",
+      previewName: "new-guelph-times-games",
     },
   ],
   misc: {
