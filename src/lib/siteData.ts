@@ -7,7 +7,7 @@ export const siteData = {
     "open to fall 2026 internships!",
   ],
   intro:
-    "hi, i'm emily, a computer engineering student at waterloo focused on full-stack development and actively exploring AI/ML. i'm always looking to learn quickly, contribute meaningfully, and work on things that matter. currently seeking fall 2026 SWE internships.",
+    "hi, i'm emily! i'm a computer engineering student at the university of waterloo focused on full-stack development and exploring AI/ML. i'm always looking to learn new technologies, build, and grow through the process. i love connecting with people who are curious and driven, so feel free to reach out!",
   experiences: [
     {
       role: "software developer intern",
@@ -47,11 +47,19 @@ export const siteData = {
     },
     {
       name: "new-guelph-times-games/",
-      stack: "java  react",
+      stack: "java",
       description: "TBD  Emily to provide",
       descriptionTbd: true,
       href: "https://github.com/emilyyu/new-guelph-times-games",
       previewName: "new-guelph-times-games",
+    },
+    {
+      name: "portfolio/",
+      stack: "next.js typescript",
+      description: "",
+      descriptionTbd: true,
+      href: "https://github.com/emilyyu/portfolio",
+      previewName: "portfolio",
     },
   ],
   misc: {

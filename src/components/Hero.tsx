@@ -47,7 +47,7 @@ function TypewriterLine({
   }, [start, text]);
 
   return (
-    <div className="flex items-center gap-2 courier-text text-[clamp(0.96rem,1.8vw,1.15rem)] tracking-[0.08em] text-black">
+    <div className="flex items-center gap-2 courier-text text-[clamp(0.96rem,1.8vw,1.15rem)] tracking-[0.08em] text-[var(--text)]">
       <span className="opacity-90">{">_"}</span>
       <span className="min-h-[1.4em]">
         {visibleText}
@@ -91,7 +91,7 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1120px] flex-col justify-center px-5 pb-24 pt-24 md:px-12">
         <div className="max-w-[56rem]">
-          <h1 className="font-sans text-[clamp(4.9rem,13vw,10.5rem)] font-[400] leading-[0.9] tracking-[0.01em] text-black">
+          <h1 className="font-sans text-[clamp(4.9rem,13vw,10.5rem)] font-[400] leading-[0.9] tracking-[0.01em] text-[var(--text)]">
             <span className="block">emily</span>
             <span className="block">yu :)</span>
           </h1>
@@ -108,7 +108,7 @@ export function Hero() {
               text={siteData.heroLines[1]}
               start={firstDone}
               active={firstDone && !secondDone}
-              persistCursor={secondDone}
+              persistCursor={false}
               onComplete={() => setSecondDone(true)}
             />
           </div>
@@ -126,3 +126,4 @@ export function Hero() {
     </section>
   );
 }
+

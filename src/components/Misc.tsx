@@ -28,13 +28,13 @@ const miscConfig = {
 
 const assetConfig = {
   succulent: {
-    src: "/images/misc/succulent.png",
+    src: "/succulent.png",
     alt: "Succulent",
     label: "succulent",
     className: "misc-succulent",
   },
   hokas: {
-    src: "/images/misc/hokas.png",
+    src: "/hokas.png",
     alt: "White Hoka running shoes",
     label: "hokas",
     className: "misc-hokas",
@@ -46,7 +46,7 @@ const assetConfig = {
     className: "misc-airpods",
   },
   raspberries: {
-    src: "/images/misc/raspberries.png",
+    src: "/raspberries.png",
     alt: "Bowl of raspberries",
     label: "raspberries",
     className: "misc-raspberries",
@@ -263,15 +263,15 @@ export function Misc() {
         }
 
         .misc-slot-succulent {
-          top: 30px;
-          left: 0;
-          width: 175px;
+          top: 18px;
+          left: -6px;
+          width: 205px;
         }
 
         .misc-slot-hokas {
-          bottom: 50px;
-          left: 100px;
-          width: 230px;
+          bottom: 32px;
+          left: 76px;
+          width: 276px;
         }
 
         .misc-slot-sticky {
@@ -289,9 +289,9 @@ export function Misc() {
         }
 
         .misc-slot-raspberries {
-          right: 30px;
-          bottom: 40px;
-          width: 135px;
+          right: 12px;
+          bottom: 18px;
+          width: 168px;
         }
 
         .misc-object {
@@ -483,15 +483,15 @@ export function Misc() {
           }
 
           .misc-slot-succulent {
-            top: 20px;
-            left: 0;
-            width: 140px;
+            top: 16px;
+            left: -2px;
+            width: 156px;
           }
 
           .misc-slot-hokas {
-            bottom: 20px;
-            left: 20px;
-            width: 184px;
+            bottom: 18px;
+            left: 12px;
+            width: 212px;
           }
 
           .misc-slot-sticky {
@@ -508,9 +508,9 @@ export function Misc() {
           }
 
           .misc-slot-raspberries {
-            right: 10px;
-            bottom: 20px;
-            width: 108px;
+            right: 4px;
+            bottom: 18px;
+            width: 124px;
           }
 
           .misc-reveal-text {
@@ -565,7 +565,7 @@ export function Misc() {
           }
 
           .misc-slot-succulent .misc-object {
-            width: 140px;
+            width: 156px;
           }
 
           .misc-slot-hokas {
@@ -575,7 +575,7 @@ export function Misc() {
           }
 
           .misc-slot-hokas .misc-object {
-            width: 184px;
+            width: 212px;
           }
 
           .hokas-stat {
@@ -599,7 +599,7 @@ export function Misc() {
           }
 
           .misc-slot-raspberries .misc-object {
-            width: 108px;
+            width: 124px;
           }
 
           .misc-reveal-text {
@@ -611,3 +611,7 @@ export function Misc() {
     </motion.section>
   );
 }
+
+
+
+
