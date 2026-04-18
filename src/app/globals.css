@@ -271,6 +271,444 @@ img {
     20px 0 0 #28c840;
 }
 
+.airpods-hover-trigger {
+  position: absolute;
+  cursor: none;
+}
+
+.airpods-hover-trigger::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 240px;
+  height: 18px;
+  transform: translateX(-50%);
+}
+
+.airpods-music-card {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  z-index: 80;
+  width: 238px;
+  padding: 12px 12px 10px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, #fff 10%, transparent) 0%,
+      transparent 20%
+    ),
+    color-mix(in srgb, var(--bg) 82%, transparent);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  font-family:
+    "Circular Std", "Circular", "Spotify Circular", "Helvetica Neue", Arial,
+    sans-serif;
+  backdrop-filter: blur(10px) saturate(104%);
+  -webkit-backdrop-filter: blur(10px) saturate(104%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(8px) scale(0.97);
+  transition:
+    opacity 0.24s ease,
+    transform 0.24s ease,
+    background 0.28s ease;
+}
+
+.airpods-hover-trigger:hover .airpods-music-card {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+  animation: airpodsCardFloat 3.4s ease-in-out infinite;
+}
+
+.airpods-music-spotify-logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  opacity: 0.96;
+}
+
+.airpods-music-spotify-mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.airpods-song-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-height: 164px;
+  animation: airpodsSongFade 0.22s ease;
+}
+
+.airpods-song-cover {
+  width: 132px;
+  height: 132px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.16);
+}
+
+.airpods-song-cover-fallback {
+  background:
+    radial-gradient(
+      circle at 22% 18%,
+      color-mix(in srgb, var(--text) 22%, transparent),
+      transparent 52%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--text) 42%, transparent),
+      color-mix(in srgb, var(--bg) 75%, transparent)
+    );
+}
+
+.airpods-song-title,
+.airpods-song-artist {
+  margin: 0;
+  max-width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: inherit;
+}
+
+.airpods-song-title {
+  padding-top: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.airpods-song-artist {
+  font-size: 12px;
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+}
+
+.airpods-music-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.airpods-music-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.airpods-music-button.is-subtle {
+  color: color-mix(in srgb, var(--text) 62%, transparent);
+}
+
+.airpods-music-button.is-primary {
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--bg-secondary) 75%, transparent);
+}
+
+.airpods-music-button:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-hover);
+  background: color-mix(in srgb, var(--bg-secondary) 88%, transparent);
+  color: var(--text);
+}
+
+.airpods-music-chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.airpods-music-progress {
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--text) 20%, transparent);
+}
+
+.airpods-music-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--text) 72%, transparent);
+  transition: width 0.26s ease;
+}
+
+.movie-hover-trigger {
+  position: absolute;
+  cursor: none;
+}
+
+.movie-hover-trigger::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 240px;
+  height: 18px;
+  transform: translateX(-50%);
+}
+
+.movie-card {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  z-index: 80;
+  width: 238px;
+  padding: 12px 12px 10px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, #fff 10%, transparent) 0%,
+      transparent 20%
+    ),
+    color-mix(in srgb, var(--bg) 82%, transparent);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  font-family:
+    "Circular Std", "Circular", "Spotify Circular", "Helvetica Neue", Arial,
+    sans-serif;
+  backdrop-filter: blur(10px) saturate(104%);
+  -webkit-backdrop-filter: blur(10px) saturate(104%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(8px) scale(0.97);
+  transition:
+    opacity 0.24s ease,
+    transform 0.24s ease,
+    background 0.28s ease;
+}
+
+.movie-hover-trigger:hover .movie-card {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+  animation: airpodsCardFloat 3.4s ease-in-out infinite;
+}
+
+.movie-letterboxd-logo {
+  position: absolute;
+  top: 9px;
+  left: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  opacity: 0.96;
+}
+
+.movie-letterboxd-mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.movie-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-height: 164px;
+  animation: airpodsSongFade 0.22s ease;
+}
+
+.movie-cover {
+  width: 130px;
+  height: 190px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.16);
+}
+
+.movie-cover-fallback {
+  background:
+    radial-gradient(
+      circle at 22% 18%,
+      color-mix(in srgb, var(--text) 22%, transparent),
+      transparent 52%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--text) 42%, transparent),
+      color-mix(in srgb, var(--bg) 75%, transparent)
+    );
+}
+
+.movie-title {
+  margin: 0;
+  padding-top: 5px;
+  max-width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.movie-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.movie-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.movie-button.is-subtle {
+  color: color-mix(in srgb, var(--text) 62%, transparent);
+}
+
+.movie-button.is-primary {
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--bg-secondary) 75%, transparent);
+}
+
+.movie-button:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-hover);
+  background: color-mix(in srgb, var(--bg-secondary) 88%, transparent);
+  color: var(--text);
+}
+
+.movie-chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.movie-progress {
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--text) 20%, transparent);
+}
+
+.movie-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--text) 72%, transparent);
+  transition: width 0.26s ease;
+}
+
+@keyframes airpodsSongFade {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes airpodsCardFloat {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-2px) scale(1);
+  }
+}
+
+@media (max-width: 767px) {
+  .airpods-music-card {
+    width: min(238px, calc(100vw - 34px));
+  }
+
+  .movie-card {
+    width: min(238px, calc(100vw - 34px));
+  }
+}
+
+@media (max-width: 479px) {
+  .airpods-hover-trigger {
+    position: static;
+  }
+
+  .airpods-music-card {
+    bottom: calc(100% + 10px);
+    left: auto;
+    right: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+
+  .airpods-hover-trigger:hover .airpods-music-card {
+    transform: translateY(0) scale(1);
+  }
+
+  .movie-hover-trigger {
+    position: static;
+  }
+
+  .movie-card {
+    bottom: calc(100% + 10px);
+    left: auto;
+    right: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+
+  .movie-hover-trigger:hover .movie-card {
+    transform: translateY(0) scale(1);
+  }
+}
+
 .project-preview::after {
   content: attr(data-name);
   position: absolute;

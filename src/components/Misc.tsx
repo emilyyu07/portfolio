@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import AirpodsHoverTrigger from "@/components/misc/AirpodsHoverTrigger";
+import MovieHoverTrigger from "@/components/misc/MovieHoverTrigger";
 
 const sectionReveal = {
   hidden: { opacity: 0, y: 22 },
@@ -14,39 +16,37 @@ const sectionReveal = {
 };
 
 const miscConfig = {
-  currentTerm: "1B",
-  todoItems: [{ text: "keep building!", done: false }],
   lastRun: {
     distance: "5.3 km",
     time: "23:14",
   },
   strava: "https://www.strava.com/athletes/yourhandle",
-  spotify: "https://open.spotify.com/user/yourhandle",
 } as const;
 
 const assetConfig = {
   succulent: {
-    src: "public/succulent.png",
+    src: "/succulent.png",
     alt: "Succulent",
-    label: "succulent",
     className: "misc-succulent",
   },
   hokas: {
-    src: "public/hokas.png",
+    src: "/hokas.png",
     alt: "White Hoka running shoes",
-    label: "hokas",
     className: "misc-hokas",
   },
   airpods: {
-    src: "public/airpods.png",
+    src: "/airpods.png",
     alt: "AirPods case",
-    label: "airpods",
     className: "misc-airpods",
   },
+  movie: {
+    src: "/movie.png",
+    alt: "Movie ticket stub",
+    className: "misc-movie",
+  },
   raspberries: {
-    src: "public/raspberries.png",
+    src: "/raspberries.png",
     alt: "Bowl of raspberries",
-    label: "raspberries",
     className: "misc-raspberries",
   },
 } as const;
@@ -54,24 +54,16 @@ const assetConfig = {
 function MiscAsset({
   src,
   alt,
-  label,
   className,
 }: {
   src: string;
   alt: string;
-  label: string;
   className: string;
 }) {
-  const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
 
   return (
     <div className={`misc-object ${className}`}>
-      {!loaded && (
-        <div className="misc-placeholder" aria-hidden="true">
-          {label}
-        </div>
-      )}
       {!failed && (
         <Image
           src={src}
@@ -81,8 +73,6 @@ function MiscAsset({
           unoptimized
           draggable={false}
           className="misc-asset-image"
-          style={{ display: loaded ? "block" : "none" }}
-          onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
         />
       )}
@@ -197,39 +187,17 @@ export function Misc() {
           </div>
 
           <div className="misc-slot misc-slot-sticky">
-            <div className="sticky-note">
-              <p className="sticky-note-header">{`> to-do: ${miscConfig.currentTerm}`}</p>
-              <ul
-                className="sticky-note-list"
-                aria-label="Current term to-do list"
-              >
-                {miscConfig.todoItems.map((item) => (
-                  <li
-                    key={item.text}
-                    className={
-                      item.done
-                        ? "sticky-note-item is-done"
-                        : "sticky-note-item"
-                    }
-                  >
-                    {item.text}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <MovieHoverTrigger
+              movieSrc={assetConfig.movie.src}
+              movieAlt={assetConfig.movie.alt}
+            />
           </div>
 
           <div className="misc-slot misc-slot-airpods">
-            <MiscAsset {...assetConfig.airpods} />
-            <a
-              href={miscConfig.spotify}
-              target="_blank"
-              rel="noreferrer"
-              className="airpods-tooltip"
-            >
-              <span className="spotify-dot" aria-hidden="true" />
-              <span>currently listening</span>
-            </a>
+            <AirpodsHoverTrigger
+              airpodsSrc={assetConfig.airpods.src}
+              airpodsAlt={assetConfig.airpods.alt}
+            />
           </div>
 
           <div className="misc-slot misc-slot-raspberries">
@@ -297,7 +265,7 @@ export function Misc() {
         .misc-slot-hokas {
           bottom: 32px;
           left: 76px;
-          width: 276px;
+          width: 300px;
         }
 
         .misc-slot-sticky {
@@ -311,13 +279,13 @@ export function Misc() {
         .misc-slot-airpods {
           top: 70px;
           right: 60px;
-          width: 105px;
+          width: 125px;
         }
 
         .misc-slot-raspberries {
           right: 12px;
           bottom: 18px;
-          width: 168px;
+          width: 175px;
         }
 
         .misc-object {
@@ -367,60 +335,20 @@ export function Misc() {
           transform: rotate(5deg) translateY(-8px);
         }
 
-        .sticky-note {
-          width: 140px;
-          padding: 14px 16px 18px;
-          background: #fafad2;
-          font-family: var(--font-body);
-          font-size: 12px;
-          line-height: 1.8;
-          color: var(--text);
-          box-shadow:
-            1px 2px 8px rgba(0, 0, 0, 0.1),
-            3px 3px 0 rgba(0, 0, 0, 0.04);
-          transform: rotate(-3deg);
-          transition:
-            transform 0.25s ease,
-            box-shadow 0.25s ease;
-          pointer-events: all;
-          cursor: none;
-          user-select: none;
+        .misc-movie {
+          transform: rotate(-20deg);
         }
 
-        .sticky-note:hover {
-          transform: rotate(-3deg) translateY(-6px);
-          box-shadow:
-            2px 6px 16px rgba(0, 0, 0, 0.13),
-            3px 3px 0 rgba(0, 0, 0, 0.04);
-        }
-
-        .sticky-note-header {
-          margin: 0;
-          font-weight: 400;
-        }
-
-        .sticky-note-list {
-          margin: 14px 0 0;
-          padding: 0;
-          list-style: none;
-        }
-
-        .sticky-note-item {
-          opacity: 1;
-          text-decoration: none;
-        }
-
-        .sticky-note-item.is-done {
-          opacity: 0.45;
-          text-decoration: line-through;
+        .movie-hover-trigger:hover .misc-movie {
+          transform: rotate(-3deg) translateY(-8px);
         }
 
         .misc-airpods {
-          transform: rotate(8deg);
+          transform: rotate(40deg);
         }
 
-        .misc-airpods:hover {
-          transform: rotate(8deg) translateY(-8px);
+        .airpods-hover-trigger:hover .misc-airpods {
+          transform: rotate(11deg) translateY(-6px);
         }
 
         .misc-raspberries {
@@ -474,38 +402,6 @@ export function Misc() {
           pointer-events: auto;
         }
 
-        .airpods-tooltip {
-          position: absolute;
-          top: -30px;
-          right: -20px;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-family: var(--font-body);
-          font-size: 11px;
-          font-weight: 400;
-          color: var(--text-muted);
-          letter-spacing: 0.03em;
-          opacity: 0;
-          transition: opacity 0.25s ease;
-          pointer-events: none;
-          white-space: nowrap;
-          text-decoration: none;
-        }
-
-        .spotify-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #1db954;
-          flex-shrink: 0;
-        }
-
-        .misc-slot-airpods:hover .airpods-tooltip {
-          opacity: 1;
-          pointer-events: auto;
-        }
-
         @media (max-width: 767px) {
           .misc-stage {
             height: auto;
@@ -534,7 +430,7 @@ export function Misc() {
           .misc-slot-airpods {
             top: 20px;
             right: 10px;
-            width: 84px;
+            width: 92px;
           }
 
           .misc-slot-raspberries {
@@ -582,7 +478,7 @@ export function Misc() {
           .misc-hokas,
           .misc-airpods,
           .misc-raspberries,
-          .sticky-note {
+          .misc-movie {
             transform: none;
           }
 
@@ -590,7 +486,11 @@ export function Misc() {
           .misc-hokas:hover,
           .misc-airpods:hover,
           .misc-raspberries:hover,
-          .sticky-note:hover {
+          .misc-movie:hover {
+            transform: translateY(-8px);
+          }
+
+          .airpods-hover-trigger:hover .misc-airpods {
             transform: translateY(-8px);
           }
 
@@ -620,12 +520,7 @@ export function Misc() {
           }
 
           .misc-slot-airpods .misc-object {
-            width: 84px;
-          }
-
-          .airpods-tooltip {
-            position: static;
-            opacity: 0;
+            width: 92px;
           }
 
           .misc-slot-raspberries .misc-object {

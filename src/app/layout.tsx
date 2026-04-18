@@ -26,6 +26,10 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.cdnfonts.com/css/intel-one-mono"
         />
+        <link
+          rel="stylesheet"
+          href="https://fonts.cdnfonts.com/css/circular-std"
+        />
       </head>
       <body
         style={{
