@@ -1,8 +1,14 @@
 "use client";
 
-import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { siteData } from "@/lib/siteData";
+import { PolaroidFrame } from "@/components/PolaroidFrame";
 
 function TypewriterLine({
   text,
@@ -47,7 +53,7 @@ function TypewriterLine({
   }, [start, text]);
 
   return (
-    <div className="flex items-center gap-2 courier-text text-[clamp(0.96rem,1.8vw,1.15rem)] tracking-[0.08em] text-[var(--text)]">
+    <div className="flex items-center gap-2 whitespace-nowrap courier-text text-[clamp(0.96rem,1.8vw,1.15rem)] tracking-[0.08em] text-[var(--text)]">
       <span className="opacity-90">{">_"}</span>
       <span className="min-h-[1.4em]">
         {visibleText}
@@ -89,27 +95,37 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-[var(--bg)]" />
 
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1120px] flex-col justify-center px-5 pb-24 pt-24 md:px-12">
-        <div className="max-w-[56rem]">
-          <h1 className="font-sans text-[clamp(4.9rem,13vw,10.5rem)] font-[400] leading-[0.9] tracking-[0.01em] text-[var(--text)]">
-            <span className="block">emily</span>
-            <span className="block">yu :)</span>
-          </h1>
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1280px] items-center px-5 pb-24 pt-24 md:px-12">
+        <div className="hero-layout w-full">
+          <div className="hero-copy max-w-[34rem]">
+            <h1 className="font-sans text-[clamp(4.9rem,13vw,10.5rem)] font-[500] leading-[0.9] tracking-[0.01em] text-[var(--text)]">
+              <span className="block">emily</span>
+              <span className="block">yu :)</span>
+            </h1>
 
-          <div className="mt-[4.5rem] space-y-3.5">
-            <TypewriterLine
-              text={siteData.heroLines[0]}
-              start
-              active={!firstDone}
-              persistCursor={false}
-              onComplete={() => setFirstDone(true)}
-            />
-            <TypewriterLine
-              text={siteData.heroLines[1]}
-              start={firstDone}
-              active={firstDone && !secondDone}
-              persistCursor={false}
-              onComplete={() => setSecondDone(true)}
+            <div className="mt-[clamp(5rem,9vw,8rem)] space-y-4">
+              <TypewriterLine
+                text={siteData.heroLines[0]}
+                start
+                active={!firstDone}
+                persistCursor={false}
+                onComplete={() => setFirstDone(true)}
+              />
+              <TypewriterLine
+                text={siteData.heroLines[1]}
+                start={firstDone}
+                active={firstDone && !secondDone}
+                persistCursor={false}
+                onComplete={() => setSecondDone(true)}
+              />
+            </div>
+          </div>
+
+          <div className="hero-polaroid-column" aria-hidden="true">
+            <PolaroidFrame
+              alt="Sunset landscape mounted in a classic Polaroid-style frame"
+              className="hero-polaroid"
+              rotation="left"
             />
           </div>
         </div>
@@ -126,4 +142,3 @@ export function Hero() {
     </section>
   );
 }
-

@@ -7,7 +7,7 @@ export const siteData = {
     "open to fall 2026 internships!",
   ],
   intro:
-    "hi, i'm emily! i'm a computer engineering student at the university of waterloo focused on full-stack development and exploring AI/ML. i'm always looking to learn new technologies, build, and grow through the process. i love connecting with people who are curious and driven, so feel free to reach out!",
+    "hi, i'm emily! i'm a computer engineering student at the university of waterloo focused on full-stack development and exploring AI/ML. i love to learn new technologies, build, and grow through the process. i'm always open to chat and connect, so feel free to reach out!",
   experiences: [
     {
       role: "software developer intern",

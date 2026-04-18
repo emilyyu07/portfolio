@@ -12,6 +12,24 @@ const sectionReveal = {
   },
 };
 
+const listReveal = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const itemReveal = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
 export function About() {
   return (
     <motion.section
@@ -20,7 +38,7 @@ export function About() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.32 }}
       variants={sectionReveal}
-      className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12"
+      className="mx-auto w-full max-w-[1280px] scroll-mt-24 px-5 py-24 md:px-12"
     >
       <div className="max-w-[43rem]">
         <div className="about-terminal">
@@ -33,11 +51,18 @@ export function About() {
         </div>
       </div>
 
-      <div className="mt-14 grid gap-[1.8rem]">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.32 }}
+        variants={listReveal}
+        className="mt-14 grid gap-[1.8rem]"
+      >
         <p className="experience-command">$ ls -l experience/</p>
         {siteData.experiences.map((experience) => (
-          <article
+          <motion.article
             key={`${experience.role}-${experience.company}`}
+            variants={itemReveal}
             className="grid gap-5 border-b border-[var(--border)] pb-7 md:grid-cols-[1.35fr_0.9fr] md:items-start"
           >
             <div>
@@ -55,9 +80,9 @@ export function About() {
                 {experience.timeFrame}
               </span>
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
     </motion.section>
   );
 }

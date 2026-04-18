@@ -8,7 +8,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "emily yu",
-  description: "emily yu portfolio",
+  description: "emily yu's portfolio",
 };
 
 export default function RootLayout({
@@ -21,11 +21,16 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://rsms.me" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/intel-one-mono" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.cdnfonts.com/css/intel-one-mono"
+        />
         <ThemeScript />
       </head>
       <body
-        style={{ ["--sunset-image" as string]: `url("${siteData.sunsetImage}")` }}
+        style={{
+          ["--sunset-image" as string]: `url("${siteData.sunsetImage}")`,
+        }}
         className="bg-[var(--bg)] font-sans text-[var(--text)] antialiased transition-[background-color,color] duration-300"
       >
         <Navbar />

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import {
@@ -58,15 +59,21 @@ export function Footer() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={sectionReveal}
-      className="relative mt-10 overflow-hidden"
+      className="footer relative mt-10 overflow-hidden"
     >
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "var(--sunset-image)" }}
-      />
-      <div className="absolute inset-0 bg-[rgba(10,10,10,0.66)]" />
+      <div className="absolute inset-0">
+        <Image
+          src="/water.jpg"
+          alt=""
+          fill
+          priority={false}
+          sizes="100vw"
+          className="footer-sunset-image"
+        />
+      </div>
+      <div className="footer-sunset-wash absolute inset-0" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-[1120px] gap-12 px-5 py-24 text-[#F0F0F0] md:grid-cols-[1.4fr_0.8fr] md:px-12">
+      <div className="relative z-10 mx-auto grid w-full max-w-[1280px] gap-12 px-5 py-24 text-[#ffffe3] md:grid-cols-[1.4fr_0.8fr] md:px-12">
         <div>
           <a
             href={`mailto:${siteData.email}`}
@@ -92,7 +99,7 @@ export function Footer() {
                   aria-label={social.label}
                   target={social.href.startsWith("mailto:") ? undefined : "_blank"}
                   rel={social.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                  className="social-wrap text-[#D6D6D6] transition-colors duration-300 hover:text-white"
+                  className="social-wrap text-[#ffffe3] transition-opacity duration-300 hover:opacity-80"
                 >
                   <Icon className="h-[18px] w-[18px]" />
                 </a>
@@ -101,10 +108,10 @@ export function Footer() {
           </div>
 
           <div className="space-y-3 text-left md:text-right">
-            <p className="courier-text text-[0.82rem] tracking-[0.2em] text-[#D6D6D6]">
+            <p className="courier-text text-[0.82rem] tracking-[0.2em] text-[#ffffe3]">
               reach out ^
             </p>
-            <p className="courier-text text-[0.78rem] tracking-[0.18em] text-[#BDBDBD]">
+            <p className="courier-text text-[0.78rem] tracking-[0.18em] text-[#ffffe3]">
               © 2026 emily yu
             </p>
           </div>

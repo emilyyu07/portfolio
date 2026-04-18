@@ -15,9 +15,7 @@ const sectionReveal = {
 
 const miscConfig = {
   currentTerm: "1B",
-  todoItems: [
-    { text: "keep building!", done: false },
-  ],
+  todoItems: [{ text: "keep building!", done: false }],
   lastRun: {
     distance: "5.3 km",
     time: "23:14",
@@ -28,25 +26,25 @@ const miscConfig = {
 
 const assetConfig = {
   succulent: {
-    src: "/succulent.png",
+    src: "public/succulent.png",
     alt: "Succulent",
     label: "succulent",
     className: "misc-succulent",
   },
   hokas: {
-    src: "/hokas.png",
+    src: "public/hokas.png",
     alt: "White Hoka running shoes",
     label: "hokas",
     className: "misc-hokas",
   },
   airpods: {
-    src: "/images/misc/airpods.png",
+    src: "public/airpods.png",
     alt: "AirPods case",
     label: "airpods",
     className: "misc-airpods",
   },
   raspberries: {
-    src: "/raspberries.png",
+    src: "public/raspberries.png",
     alt: "Bowl of raspberries",
     label: "raspberries",
     className: "misc-raspberries",
@@ -136,7 +134,10 @@ export function Misc() {
 
       for (const selector of Object.keys(reveals)) {
         const currentMatch = target.closest(selector);
-        const nextMatch = relatedTarget instanceof Element ? relatedTarget.closest(selector) : null;
+        const nextMatch =
+          relatedTarget instanceof Element
+            ? relatedTarget.closest(selector)
+            : null;
 
         if (currentMatch && currentMatch !== nextMatch) {
           revealText.classList.remove("visible");
@@ -161,18 +162,22 @@ export function Misc() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.32 }}
       variants={sectionReveal}
-      className="misc-section mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12"
+      className="misc-section mx-auto w-full max-w-[1280px] scroll-mt-24 px-5 py-24 md:px-12"
     >
       <div className="misc-inner">
-        <motion.div
-          className="misc-intro"
-        >
+        <motion.div className="misc-intro">
           <p className="misc-header">$ open ./misc</p>
-          <p className="misc-blurb">a few things that aren&apos;t on my resume.</p>
+          <p className="misc-blurb">
+            a few things that aren&apos;t on my resume.
+          </p>
         </motion.div>
 
         <div ref={stageRef} className="misc-stage">
-          <div ref={revealTextRef} className="misc-reveal-text" aria-hidden="true" />
+          <div
+            ref={revealTextRef}
+            className="misc-reveal-text"
+            aria-hidden="true"
+          />
 
           <div className="misc-slot misc-slot-succulent">
             <MiscAsset {...assetConfig.succulent} />
@@ -180,17 +185,33 @@ export function Misc() {
 
           <div className="misc-slot misc-slot-hokas">
             <MiscAsset {...assetConfig.hokas} />
-            <a href={miscConfig.strava} target="_blank" rel="noreferrer" className="hokas-stat">
-              last run&nbsp;&nbsp;{miscConfig.lastRun.distance}&nbsp;&nbsp;{miscConfig.lastRun.time}
+            <a
+              href={miscConfig.strava}
+              target="_blank"
+              rel="noreferrer"
+              className="hokas-stat"
+            >
+              last run&nbsp;&nbsp;{miscConfig.lastRun.distance}&nbsp;&nbsp;
+              {miscConfig.lastRun.time}
             </a>
           </div>
 
           <div className="misc-slot misc-slot-sticky">
             <div className="sticky-note">
               <p className="sticky-note-header">{`> to-do: ${miscConfig.currentTerm}`}</p>
-              <ul className="sticky-note-list" aria-label="Current term to-do list">
+              <ul
+                className="sticky-note-list"
+                aria-label="Current term to-do list"
+              >
                 {miscConfig.todoItems.map((item) => (
-                  <li key={item.text} className={item.done ? "sticky-note-item is-done" : "sticky-note-item"}>
+                  <li
+                    key={item.text}
+                    className={
+                      item.done
+                        ? "sticky-note-item is-done"
+                        : "sticky-note-item"
+                    }
+                  >
                     {item.text}
                   </li>
                 ))}
@@ -200,7 +221,12 @@ export function Misc() {
 
           <div className="misc-slot misc-slot-airpods">
             <MiscAsset {...assetConfig.airpods} />
-            <a href={miscConfig.spotify} target="_blank" rel="noreferrer" className="airpods-tooltip">
+            <a
+              href={miscConfig.spotify}
+              target="_blank"
+              rel="noreferrer"
+              className="airpods-tooltip"
+            >
               <span className="spotify-dot" aria-hidden="true" />
               <span>currently listening</span>
             </a>
@@ -233,7 +259,7 @@ export function Misc() {
         .misc-header {
           margin: 0;
           font-family: "Courier New", Courier, monospace;
-          font-size: 0.96rem;
+          font-size: var(--section-command-size);
           font-weight: 400;
           letter-spacing: 0.24em;
           color: var(--text);
@@ -242,7 +268,8 @@ export function Misc() {
         .misc-blurb {
           margin: 20px 0 0;
           max-width: 34rem;
-          font-family: "InterVariable", Inter, "Helvetica Neue", Arial, sans-serif;
+          font-family:
+            "InterVariable", Inter, "Helvetica Neue", Arial, sans-serif;
           font-size: 1.03rem;
           font-weight: 400;
           line-height: 2rem;
@@ -353,7 +380,9 @@ export function Misc() {
             1px 2px 8px rgba(0, 0, 0, 0.1),
             3px 3px 0 rgba(0, 0, 0, 0.04);
           transform: rotate(-3deg);
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease;
           pointer-events: all;
           cursor: none;
           user-select: none;
@@ -413,7 +442,9 @@ export function Misc() {
           font-weight: 400;
           letter-spacing: 0.05em;
           opacity: 0;
-          transition: opacity 0.3s ease, color 0.3s ease;
+          transition:
+            opacity 0.3s ease,
+            color 0.3s ease;
           pointer-events: none;
           white-space: nowrap;
           z-index: 10;
@@ -611,7 +642,3 @@ export function Misc() {
     </motion.section>
   );
 }
-
-
-
-

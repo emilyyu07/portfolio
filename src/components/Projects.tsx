@@ -12,6 +12,24 @@ const sectionReveal = {
   },
 };
 
+const listReveal = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const itemReveal = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
 export function Projects() {
   return (
     <motion.section
@@ -20,17 +38,24 @@ export function Projects() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.32 }}
       variants={sectionReveal}
-      className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-24 md:px-12"
+      className="mx-auto w-full max-w-[1280px] scroll-mt-24 px-5 py-24 md:px-12"
     >
       <p className="projects-command">$ ls ./projects</p>
 
-      <div className="projects-list">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.32 }}
+        variants={listReveal}
+        className="projects-list"
+      >
         {siteData.projects.map((project) => (
-          <a
+          <motion.a
             key={project.name}
             href={project.href}
             target="_blank"
             rel="noreferrer"
+            variants={itemReveal}
             className="project-row group"
           >
             <div className="project-info">
@@ -45,9 +70,9 @@ export function Projects() {
               <div className="project-preview" data-name={project.previewName} />
               <span className="project-arrow">-&gt;</span>
             </div>
-          </a>
+          </motion.a>
         ))}
-      </div>
+      </motion.div>
     </motion.section>
   );
 }

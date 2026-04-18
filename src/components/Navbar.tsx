@@ -38,7 +38,7 @@ export function Navbar() {
         style={{ scaleX: scrollYProgress }}
       />
       <header className="sticky top-0 z-[60] border-b border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur-xl transition-[background-color,border-color] duration-300">
-        <div className="mx-auto flex w-full max-w-[1120px] items-center justify-between px-5 py-4 md:px-12">
+        <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-5 py-4 md:px-12">
           <Link
             href="#top"
             className="nav-link courier-text text-[0.92rem] tracking-[0.18em] text-[var(--text)] transition-opacity duration-300 hover:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--bg)]"
@@ -59,6 +59,10 @@ export function Navbar() {
                 </Link>
               ))}
             </nav>
+            <span
+              aria-hidden="true"
+              className="hidden h-5 w-px bg-[var(--text)] opacity-35 md:block"
+            />
 
             <button
               type="button"
