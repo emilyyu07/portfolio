@@ -247,7 +247,7 @@ export function Misc() {
 
         .misc-inner {
           width: 100%;
-          font-family: Inter, sans-serif;
+          font-family: var(--font-body);
           font-weight: 400;
         }
 
@@ -258,7 +258,7 @@ export function Misc() {
 
         .misc-header {
           margin: 0;
-          font-family: "Courier New", Courier, monospace;
+          font-family: var(--font-terminal);
           font-size: var(--section-command-size);
           font-weight: 400;
           letter-spacing: 0.24em;
@@ -268,13 +268,12 @@ export function Misc() {
         .misc-blurb {
           margin: 20px 0 0;
           max-width: 34rem;
-          font-family:
-            "InterVariable", Inter, "Helvetica Neue", Arial, sans-serif;
+          font-family: var(--font-body);
           font-size: 1.03rem;
           font-weight: 400;
           line-height: 2rem;
           color: var(--text);
-          opacity: 0.82;
+          opacity: 1;
         }
 
         .misc-stage {
@@ -345,7 +344,7 @@ export function Misc() {
           aspect-ratio: 1 / 1;
           place-items: center;
           border: 1px solid rgba(0, 0, 0, 0.12);
-          font-family: Inter, sans-serif;
+          font-family: var(--font-body);
           font-size: 11px;
           font-weight: 400;
           color: var(--text-muted);
@@ -372,10 +371,10 @@ export function Misc() {
           width: 140px;
           padding: 14px 16px 18px;
           background: #fafad2;
-          font-family: Inter, sans-serif;
+          font-family: var(--font-body);
           font-size: 12px;
           line-height: 1.8;
-          color: #333333;
+          color: var(--text);
           box-shadow:
             1px 2px 8px rgba(0, 0, 0, 0.1),
             3px 3px 0 rgba(0, 0, 0, 0.04);
@@ -437,7 +436,7 @@ export function Misc() {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-family: Inter, sans-serif;
+          font-family: var(--font-body);
           font-size: 13px;
           font-weight: 400;
           letter-spacing: 0.05em;
@@ -458,7 +457,7 @@ export function Misc() {
           position: absolute;
           left: 0;
           bottom: -32px;
-          font-family: Inter, sans-serif;
+          font-family: var(--font-body);
           font-size: 11px;
           font-weight: 400;
           color: var(--text-muted);
@@ -482,7 +481,7 @@ export function Misc() {
           display: flex;
           align-items: center;
           gap: 6px;
-          font-family: Inter, sans-serif;
+          font-family: var(--font-body);
           font-size: 11px;
           font-weight: 400;
           color: var(--text-muted);

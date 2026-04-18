@@ -1,44 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  font-family: Inter, sans-serif;
-  font-feature-settings:
-    "liga" 1,
-    "calt" 1;
-  --font-body: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Satoshi", sans-serif;
+  --font-body: "Satoshi", sans-serif;
   --font-terminal: "Intel One Mono", "Courier New", Courier, monospace;
   --bg: #ffffe3;
-  --text: #1d2545;
-  --text-muted: #1d2545;
-  --muted: #1d2545;
+  --text: #0c132e;
+  --text-muted: #0c132e;
+  --muted: #0c132e;
   --border: rgba(29, 37, 69, 0.12);
   --border-hover: rgba(29, 37, 69, 0.22);
-  --accent: #1d2545;
+  --accent: #0c132e;
+  --progress: #0c132e;
   --highlight: rgba(29, 37, 69, 0.16);
   --nav-bg: rgba(255, 255, 227, 0.82);
   --panel: rgba(29, 37, 69, 0.08);
   --bg-secondary: rgba(29, 37, 69, 0.08);
+  --chip-bg: rgba(255, 255, 227, 0.42);
+  --chip-border: rgba(12, 19, 46, 0.26);
+  --chip-highlight: rgba(255, 255, 255, 0.34);
   --section-command-size: clamp(1.25rem, 1.8vw, 1.15rem);
 }
 
-@supports (font-variation-settings: normal) {
-  :root {
-    font-family: InterVariable, sans-serif;
-  }
-}
-
 html[data-theme="dark"] {
-  --bg: #1d2545;
+  --bg: #0c132e;
   --text: #ffffe3;
   --text-muted: #ffffe3;
   --muted: #ffffe3;
   --border: rgba(255, 255, 227, 0.14);
   --border-hover: rgba(255, 255, 227, 0.24);
   --accent: #ffffe3;
+  --progress: #ffffe3;
   --highlight: rgba(255, 255, 227, 0.22);
-  --nav-bg: rgba(29, 37, 69, 0.82);
+  --nav-bg: rgba(12, 19, 46, 0.82);
   --panel: rgba(255, 255, 227, 0.08);
   --bg-secondary: rgba(255, 255, 227, 0.08);
+  --chip-bg: rgba(255, 255, 227, 0.12);
+  --chip-border: rgba(255, 255, 227, 0.32);
+  --chip-highlight: rgba(255, 255, 255, 0.2);
 }
 
 html {
@@ -83,7 +82,7 @@ img {
 
 .meta-text {
   font-family: var(--font-terminal);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   letter-spacing: 0.16em;
   color: var(--muted);
 }
@@ -112,16 +111,15 @@ img {
 
 .about-blurb {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.15rem;
   color: var(--text);
-  opacity: 0.85;
   line-height: 1.7;
   margin-bottom: 24px;
 }
 
 .about-idle {
   font-family: var(--font-terminal);
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: var(--text-muted);
   display: flex;
   align-items: center;
@@ -178,23 +176,43 @@ img {
 
 .project-dirname {
   font-family: var(--font-terminal);
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   color: var(--text);
   letter-spacing: 0.01em;
 }
 
 .project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.project-stack-item {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-terminal);
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0.38rem 0.62rem;
+  border-radius: 999px;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  backdrop-filter: blur(8px) saturate(92%);
+  -webkit-backdrop-filter: blur(8px) saturate(92%);
+  box-shadow:
+    inset 0 1px 0 var(--chip-highlight),
+    0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .project-desc {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--text);
-  opacity: 0.8;
+  opacity: 1;
   line-height: 1.5;
   margin-top: 4px;
 }
@@ -213,7 +231,7 @@ img {
 
 .project-arrow {
   font-family: var(--font-terminal);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-muted);
   transition: color 0.15s ease;
   flex-shrink: 0;
@@ -260,7 +278,7 @@ img {
   left: 12px;
   font-family: var(--font-terminal);
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: #ffffe3;
   letter-spacing: 0.02em;
 }
 
@@ -431,7 +449,7 @@ img {
   font-family: var(--font-terminal);
   font-size: 0.78rem;
   letter-spacing: 0.12em;
-  color: rgba(76, 63, 40, 0.52);
+  color: var(--text);
   text-transform: uppercase;
 }
 
@@ -475,6 +493,7 @@ img {
   font-family: var(--font-terminal);
   font-size: 0.85rem;
   color: #ffffe3;
+  font-weight: 700;
   letter-spacing: 0.04em;
 }
 
@@ -482,6 +501,7 @@ img {
   font-family: var(--font-terminal);
   font-size: 0.85rem;
   color: #ffffe3;
+  font-weight: 700;
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
@@ -494,7 +514,7 @@ img {
   display: none;
   pointer-events: none;
   user-select: none;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-body);
   font-size: 15px;
   font-weight: 400;
   line-height: 1;

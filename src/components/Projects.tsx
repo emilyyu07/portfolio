@@ -60,7 +60,13 @@ export function Projects() {
           >
             <div className="project-info">
               <span className="project-dirname">{project.name}</span>
-              <span className="project-stack">{project.stack}</span>
+              <div className="project-stack" aria-label={`${project.name} tech stack`}>
+                {project.stack.split(",").map((item) => item.trim()).filter(Boolean).map((stackItem, index) => (
+                  <span key={`${project.name}-${stackItem}-${index}`} className="project-stack-item">
+                    {stackItem}
+                  </span>
+                ))}
+              </div>
               <span className={`project-desc${project.descriptionTbd ? " project-desc-muted" : ""}`}>
                 {project.description}
               </span>

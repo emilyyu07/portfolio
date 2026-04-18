@@ -73,10 +73,10 @@ export function About() {
             </div>
 
             <div className="flex flex-col gap-2 text-right text-[var(--muted)] md:items-end">
-              <span className="font-sans text-[1rem] font-[400] tracking-[0.08em] text-[var(--text)]">
+              <span className="text-[1rem] font-[400] tracking-[0.08em] text-[var(--text)]">
                 {experience.company}
               </span>
-              <span className="font-sans text-[0.85rem] tracking-[0.16em] text-[var(--muted)]">
+              <span className="text-[0.85rem] tracking-[0.16em] text-[var(--muted)]">
                 {experience.timeFrame}
               </span>
             </div>

@@ -73,11 +73,11 @@ export function Footer() {
       </div>
       <div className="footer-sunset-wash absolute inset-0" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-[1280px] gap-12 px-5 py-24 text-[#ffffe3] md:grid-cols-[1.4fr_0.8fr] md:px-12">
+      <div className="relative z-10 mx-auto grid w-full max-w-[1280px] gap-12 px-5 py-24 font-[700] text-[#ffffe3] md:grid-cols-[1.4fr_0.8fr] md:px-12">
         <div>
           <a
             href={`mailto:${siteData.email}`}
-            className="social-wrap text-[clamp(2.8rem,7vw,5.8rem)] font-[300] leading-[0.94] tracking-[-0.06em] transition-opacity duration-300 hover:opacity-80"
+            className="social-wrap text-[clamp(2.8rem,7vw,5.8rem)] font-[700] leading-[0.94] tracking-[-0.06em] transition-opacity duration-300 hover:opacity-80"
           >
             {siteData.email}
           </a>

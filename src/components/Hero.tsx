@@ -53,8 +53,8 @@ function TypewriterLine({
   }, [start, text]);
 
   return (
-    <div className="flex items-center gap-2 whitespace-nowrap courier-text text-[clamp(0.96rem,1.8vw,1.15rem)] tracking-[0.08em] text-[var(--text)]">
-      <span className="opacity-90">{">_"}</span>
+    <div className="flex items-center gap-2 whitespace-nowrap courier-text text-[clamp(1.25rem,1.8vw,1.15rem)] tracking-[0.08em] text-[var(--text)]">
+      <span>{">_"}</span>
       <span className="min-h-[1.4em]">
         {visibleText}
         {(active || persistCursor) && <span className="type-cursor">|</span>}
@@ -98,12 +98,12 @@ export function Hero() {
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1280px] items-center px-5 pb-24 pt-24 md:px-12">
         <div className="hero-layout w-full">
           <div className="hero-copy max-w-[34rem]">
-            <h1 className="font-sans text-[clamp(4.9rem,13vw,10.5rem)] font-[500] leading-[0.9] tracking-[0.01em] text-[var(--text)]">
+            <h1 className="text-[clamp(4.9rem,13vw,10.5rem)] font-[700] leading-[0.9] tracking-[0.01em] text-[var(--text)]">
               <span className="block">emily</span>
               <span className="block">yu :)</span>
             </h1>
 
-            <div className="mt-[clamp(5rem,9vw,8rem)] space-y-4">
+            <div className="mt-[clamp(5rem,9vw,8rem)] space-y-5">
               <TypewriterLine
                 text={siteData.heroLines[0]}
                 start
@@ -132,9 +132,9 @@ export function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 8 }}
-          animate={showHint ? { opacity: 0.48, y: 0 } : { opacity: 0, y: 8 }}
+          animate={showHint ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="absolute bottom-10 left-5 courier-text text-[0.8rem] tracking-[0.22em] text-[var(--text)] md:left-12"
+          className="absolute bottom-10 left-5 courier-text text-[0.9rem] tracking-[0.22em] text-[var(--text)] md:left-12"
         >
           scroll to continue
         </motion.div>

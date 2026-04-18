@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { TerminalCursor } from "@/components/TerminalCursor";
-import { ThemeScript } from "@/components/ThemeScript";
 import { siteData } from "@/lib/siteData";
 import "./globals.css";
 
@@ -19,19 +18,20 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://rsms.me" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap"
+        />
         <link
           rel="stylesheet"
           href="https://fonts.cdnfonts.com/css/intel-one-mono"
         />
-        <ThemeScript />
       </head>
       <body
         style={{
           ["--sunset-image" as string]: `url("${siteData.sunsetImage}")`,
         }}
-        className="bg-[var(--bg)] font-sans text-[var(--text)] antialiased transition-[background-color,color] duration-300"
+        className="bg-[var(--bg)] text-[var(--text)] antialiased transition-[background-color,color] duration-300"
       >
         <Navbar />
         <main>{children}</main>
