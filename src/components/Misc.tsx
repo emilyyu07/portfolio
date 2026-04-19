@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import AirpodsHoverTrigger from "@/components/misc/AirpodsHoverTrigger";
+import HokaHoverTrigger from "@/components/misc/HokaHoverTrigger";
 import MovieHoverTrigger from "@/components/misc/MovieHoverTrigger";
 
 const sectionReveal = {
@@ -16,11 +17,8 @@ const sectionReveal = {
 };
 
 const miscConfig = {
-  lastRun: {
-    distance: "5.3 km",
-    time: "23:14",
-  },
-  strava: "https://www.strava.com/athletes/yourhandle",
+  stravaProfileUrl: "https://www.strava.com/athletes/173030401",
+  stravaUsername: "@emilyyu",
 } as const;
 
 const assetConfig = {
@@ -81,70 +79,6 @@ function MiscAsset({
 }
 
 export function Misc() {
-  const stageRef = useRef<HTMLDivElement | null>(null);
-  const revealTextRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const stage = stageRef.current;
-    const revealText = revealTextRef.current;
-
-    if (!stage || !revealText) {
-      return;
-    }
-
-    const reveals = {
-      ".misc-succulent": { text: "still alive :)", color: "#4A7C59" },
-      ".misc-raspberries": { text: "have a good day :)", color: "#C8464A" },
-    } as const;
-
-    const handleMouseOver = (event: MouseEvent) => {
-      const target = event.target;
-
-      if (!(target instanceof Element)) {
-        return;
-      }
-
-      for (const [selector, data] of Object.entries(reveals)) {
-        if (target.closest(selector)) {
-          revealText.textContent = data.text;
-          revealText.style.color = data.color;
-          revealText.classList.add("visible");
-          return;
-        }
-      }
-    };
-
-    const handleMouseOut = (event: MouseEvent) => {
-      const target = event.target;
-      const relatedTarget = event.relatedTarget;
-
-      if (!(target instanceof Element)) {
-        return;
-      }
-
-      for (const selector of Object.keys(reveals)) {
-        const currentMatch = target.closest(selector);
-        const nextMatch =
-          relatedTarget instanceof Element
-            ? relatedTarget.closest(selector)
-            : null;
-
-        if (currentMatch && currentMatch !== nextMatch) {
-          revealText.classList.remove("visible");
-          return;
-        }
-      }
-    };
-
-    stage.addEventListener("mouseover", handleMouseOver);
-    stage.addEventListener("mouseout", handleMouseOut);
-
-    return () => {
-      stage.removeEventListener("mouseover", handleMouseOver);
-      stage.removeEventListener("mouseout", handleMouseOut);
-    };
-  }, []);
-
   return (
     <motion.section
       id="misc"
@@ -152,7 +86,7 @@ export function Misc() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.32 }}
       variants={sectionReveal}
-      className="misc-section mx-auto w-full max-w-[1280px] scroll-mt-24 px-5 py-24 md:px-12"
+      className="misc-section mx-auto w-full max-w-[1280px] scroll-mt-24 px-5 pt-24 pb-44 md:px-12"
     >
       <div className="misc-inner">
         <motion.div className="misc-intro">
@@ -162,28 +96,36 @@ export function Misc() {
           </p>
         </motion.div>
 
-        <div ref={stageRef} className="misc-stage">
-          <div
-            ref={revealTextRef}
-            className="misc-reveal-text"
-            aria-hidden="true"
-          />
-
+        <div className="misc-stage">
           <div className="misc-slot misc-slot-succulent">
             <MiscAsset {...assetConfig.succulent} />
+            <div className="misc-curved-text misc-curved-text-succulent">
+              <svg viewBox="0 0 160 160" aria-hidden="true">
+                <path
+                  id="succulent-curve"
+                  d="M0 108 A132 132 0 0 0 118 150"
+                  fill="none"
+                />
+                <text textLength="108" lengthAdjust="spacingAndGlyphs">
+                  <textPath
+                    href="#succulent-curve"
+                    startOffset="48%"
+                    textAnchor="middle"
+                  >
+                    let it be. - the beatles
+                  </textPath>
+                </text>
+              </svg>
+            </div>
           </div>
 
           <div className="misc-slot misc-slot-hokas">
-            <MiscAsset {...assetConfig.hokas} />
-            <a
-              href={miscConfig.strava}
-              target="_blank"
-              rel="noreferrer"
-              className="hokas-stat"
-            >
-              last run&nbsp;&nbsp;{miscConfig.lastRun.distance}&nbsp;&nbsp;
-              {miscConfig.lastRun.time}
-            </a>
+            <HokaHoverTrigger
+              shoesSrc={assetConfig.hokas.src}
+              shoesAlt={assetConfig.hokas.alt}
+              stravaProfileUrl={miscConfig.stravaProfileUrl}
+              stravaUsername={miscConfig.stravaUsername}
+            />
           </div>
 
           <div className="misc-slot misc-slot-sticky">
@@ -202,6 +144,24 @@ export function Misc() {
 
           <div className="misc-slot misc-slot-raspberries">
             <MiscAsset {...assetConfig.raspberries} />
+            <div className="misc-curved-text misc-curved-text-raspberries">
+              <svg viewBox="0 0 160 160" aria-hidden="true">
+                <path
+                  id="raspberries-curve"
+                  d="M42 150 A132 132 0 0 0 160 108"
+                  fill="none"
+                />
+                <text textLength="122" lengthAdjust="spacingAndGlyphs">
+                  <textPath
+                    href="#raspberries-curve"
+                    startOffset="52%"
+                    textAnchor="middle"
+                  >
+                    hope you have a good day :)
+                  </textPath>
+                </text>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -257,15 +217,15 @@ export function Misc() {
         }
 
         .misc-slot-succulent {
-          top: 18px;
-          left: -6px;
-          width: 205px;
+          top: 40px;
+          left: -70px;
+          width: 250px;
         }
 
         .misc-slot-hokas {
-          bottom: 32px;
-          left: 76px;
-          width: 300px;
+          bottom: 280px;
+          left: 36px;
+          width: 350px;
         }
 
         .misc-slot-sticky {
@@ -279,13 +239,13 @@ export function Misc() {
         .misc-slot-airpods {
           top: 70px;
           right: 60px;
-          width: 125px;
+          width: 140px;
         }
 
         .misc-slot-raspberries {
           right: 12px;
           bottom: 18px;
-          width: 175px;
+          width: 230px;
         }
 
         .misc-object {
@@ -328,11 +288,11 @@ export function Misc() {
         }
 
         .misc-hokas {
-          transform: rotate(5deg);
+          transform: rotate(98deg);
         }
 
         .misc-hokas:hover {
-          transform: rotate(5deg) translateY(-8px);
+          transform: rotate(98deg) translateY(-8px);
         }
 
         .misc-movie {
@@ -359,47 +319,44 @@ export function Misc() {
           transform: rotate(-5deg) translateY(-8px);
         }
 
-        .misc-reveal-text {
+        .misc-curved-text {
           position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          font-family: var(--font-body);
-          font-size: 13px;
-          font-weight: 400;
-          letter-spacing: 0.05em;
-          opacity: 0;
-          transition:
-            opacity 0.3s ease,
-            color 0.3s ease;
+          inset: 0;
+          overflow: visible;
           pointer-events: none;
-          white-space: nowrap;
-          z-index: 10;
-        }
-
-        .misc-reveal-text.visible {
-          opacity: 1;
-        }
-
-        .hokas-stat {
-          position: absolute;
-          left: 0;
-          bottom: -32px;
-          font-family: var(--font-body);
-          font-size: 11px;
-          font-weight: 400;
-          color: var(--text-muted);
-          letter-spacing: 0.04em;
           opacity: 0;
-          transition: opacity 0.3s ease;
-          pointer-events: none;
-          white-space: nowrap;
-          text-decoration: none;
+          transition: opacity 0.25s ease;
+          z-index: 11;
         }
 
-        .misc-slot-hokas:hover .hokas-stat {
+        .misc-curved-text svg {
+          width: 100%;
+          height: 100%;
+          overflow: visible;
+        }
+
+        .misc-curved-text text {
+          font-family: var(--font-body);
+          font-size: 10px;
+          font-weight: 400;
+          letter-spacing: 0.035em;
+          text-transform: lowercase;
+          fill: currentColor;
+        }
+
+        .misc-curved-text-succulent {
+          inset: -10px -12px -20px -24px;
+          color: color-mix(in srgb, #4a7c59 78%, transparent);
+        }
+
+        .misc-curved-text-raspberries {
+          inset: -10px -24px -20px -12px;
+          color: color-mix(in srgb, #c8464a 76%, transparent);
+        }
+
+        .misc-slot-succulent:hover .misc-curved-text-succulent,
+        .misc-slot-raspberries:hover .misc-curved-text-raspberries {
           opacity: 1;
-          pointer-events: auto;
         }
 
         @media (max-width: 767px) {
@@ -412,12 +369,6 @@ export function Misc() {
             top: 16px;
             left: -2px;
             width: 156px;
-          }
-
-          .misc-slot-hokas {
-            bottom: 18px;
-            left: 12px;
-            width: 212px;
           }
 
           .misc-slot-sticky {
@@ -437,10 +388,6 @@ export function Misc() {
             right: 4px;
             bottom: 18px;
             width: 124px;
-          }
-
-          .misc-reveal-text {
-            font-size: 12px;
           }
         }
 
@@ -498,19 +445,8 @@ export function Misc() {
             width: 156px;
           }
 
-          .misc-slot-hokas {
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-          }
-
           .misc-slot-hokas .misc-object {
             width: 212px;
-          }
-
-          .hokas-stat {
-            position: static;
-            opacity: 0;
           }
 
           .misc-slot-airpods {
@@ -527,9 +463,9 @@ export function Misc() {
             width: 124px;
           }
 
-          .misc-reveal-text {
-            top: 32px;
-            transform: translateX(-50%);
+          .misc-slot-succulent {
+            width: 200px;
+            top: 50px;
           }
         }
       `}</style>

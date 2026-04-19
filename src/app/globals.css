@@ -134,7 +134,7 @@ img {
 .about-cursor {
   color: var(--text);
   animation: cursorBlink 1s step-end infinite;
-  font-size: clamp(1.25rem, 1.8vw, 1.15rem);
+  font-size: var(--section-command-size);
   line-height: 1;
 }
 
@@ -462,6 +462,109 @@ img {
   transition: width 0.26s ease;
 }
 
+.hokas-hover-trigger {
+  position: absolute;
+  cursor: none;
+}
+
+.hokas-hover-trigger::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: 18px;
+  height: 238px;
+  transform: translateY(-50%);
+}
+
+.hokas-strava-card {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 12px);
+  z-index: 80;
+  width: 238px;
+  padding: 12px 14px 11px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, #fff 10%, transparent) 0%,
+      transparent 20%
+    ),
+    color-mix(in srgb, var(--bg) 82%, transparent);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(10px) saturate(104%);
+  -webkit-backdrop-filter: blur(10px) saturate(104%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(8px) scale(0.97);
+  transition:
+    opacity 0.24s ease,
+    transform 0.24s ease,
+    background 0.28s ease;
+}
+
+.hokas-hover-trigger:hover .hokas-strava-card {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.hokas-strava-icon-link {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-block;
+  line-height: 0;
+  transition: transform 0.2s ease;
+}
+
+.hokas-strava-icon-link:hover {
+  transform: translateY(-1px);
+}
+
+.hokas-strava-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.hokas-strava-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.hokas-strava-wordmark {
+  display: block;
+  width: auto;
+  height: 14px;
+  object-fit: contain;
+}
+
+.hokas-strava-username {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.hokas-strava-cta {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: color-mix(in srgb, var(--text) 68%, transparent);
+}
+
+.hokas-strava-link:hover .hokas-strava-cta {
+  color: var(--text);
+}
+
 .movie-hover-trigger {
   position: absolute;
   cursor: none;
@@ -672,6 +775,10 @@ img {
     width: min(238px, calc(100vw - 34px));
   }
 
+  .hokas-strava-card {
+    width: min(238px, calc(100vw - 34px));
+  }
+
   .movie-card {
     width: min(238px, calc(100vw - 34px));
   }
@@ -695,6 +802,21 @@ img {
 
   .movie-hover-trigger {
     position: static;
+  }
+
+  .hokas-hover-trigger {
+    position: static;
+  }
+
+  .hokas-strava-card {
+    bottom: calc(100% + 10px);
+    left: auto;
+    right: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+
+  .hokas-hover-trigger:hover .hokas-strava-card {
+    transform: translateY(0) scale(1);
   }
 
   .movie-card {
