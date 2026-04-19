@@ -24,17 +24,17 @@ const songs: Song[] = [
   {
     title: "All Too Well (Taylor's Version)",
     artist: "Taylor Swift",
-    cover: "/songs/8.jpg",
+    cover: "/songs/9.jpg",
   },
   {
     title: "Everywhere, Everything",
     artist: "Noah Kahan, Gracie Abrams",
-    cover: "/songs/8.jpg",
+    cover: "/songs/10.jpg",
   },
   {
     title: "No. 1 Party Anthem",
     artist: "Arctic Monkeys",
-    cover: "/songs/8.jpg",
+    cover: "/songs/11.jpg",
   },
 ];
 
