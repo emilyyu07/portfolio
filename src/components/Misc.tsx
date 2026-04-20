@@ -300,7 +300,7 @@ export function Misc() {
         }
 
         .movie-hover-trigger:hover .misc-movie {
-          transform: rotate(-3deg) translateY(-8px);
+          transform: rotate(-42deg) translateY(-8px);
         }
 
         .misc-airpods {
@@ -424,9 +424,12 @@ export function Misc() {
           .misc-succulent,
           .misc-hokas,
           .misc-airpods,
-          .misc-raspberries,
-          .misc-movie {
+          .misc-raspberries {
             transform: none;
+          }
+
+          .misc-movie {
+            transform: rotate(-42deg);
           }
 
           .misc-succulent:hover,
@@ -439,6 +442,10 @@ export function Misc() {
 
           .airpods-hover-trigger:hover .misc-airpods {
             transform: translateY(-8px);
+          }
+
+          .movie-hover-trigger:hover .misc-movie {
+            transform: rotate(-42deg) translateY(-8px);
           }
 
           .misc-slot-succulent .misc-object {

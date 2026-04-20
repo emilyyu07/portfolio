@@ -32,26 +32,32 @@ export const siteData = {
     {
       name: "price-delta/",
       stack: "Node.js, TypeScript, PostgreSQL, Redis",
-      description: "TBD  Emily to provide",
+      description:
+        "an automated price intelligence engine that scrapes retail pages on a schedule and delivers real-time alerts when your target price is hit.",
       descriptionTbd: true,
       href: "https://github.com/emilyyu07/price-delta.git",
       previewName: "price-delta",
+      previewImage: "/project/price-delta.png",
     },
     {
       name: "strider/",
       stack: "FastAPI, Python, PostgreSQL (PostGIS), Ollama",
-      description: "TBD  Emily to provide",
+      description:
+        " a semantic routing engine that translates natural language running prompts into personalized loop routes across the kitchener-waterloo-guelph region.",
       descriptionTbd: true,
       href: "https://github.com/emilyyu07/strider.git",
       previewName: "strider",
+      previewImage: "/project/strider.png",
     },
     {
       name: "new-guelph-times-games/",
       stack: "Java, React",
-      description: "TBD  Emily to provide",
+      description:
+        "a new york times-inspired word game suite (wordle, connections, mini crossword) — made in guelph :)",
       descriptionTbd: true,
       href: "https://github.com/emilyyu07/new-guelph-times-games.git",
       previewName: "new-guelph-times-games",
+      previewImage: "/project/ngt.png",
     },
     {
       name: "portfolio/",
@@ -60,6 +66,7 @@ export const siteData = {
       descriptionTbd: true,
       href: "https://github.com/emilyyu07/portfolio.git",
       previewName: "portfolio",
+      previewImage: "/project/portfolio.png",
     },
   ],
   misc: {

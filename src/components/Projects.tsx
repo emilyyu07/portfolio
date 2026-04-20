@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { siteData } from "@/lib/siteData";
 
@@ -67,13 +68,23 @@ export function Projects() {
                   </span>
                 ))}
               </div>
-              <span className={`project-desc${project.descriptionTbd ? " project-desc-muted" : ""}`}>
+              <p className={`project-desc${project.descriptionTbd ? " project-desc-muted" : ""}`}>
                 {project.description}
-              </span>
+              </p>
             </div>
 
             <div className="project-right">
-              <div className="project-preview" data-name={project.previewName} />
+              <div className="project-preview">
+                <div className="project-preview-content">
+                  <Image
+                    src={project.previewImage}
+                    alt={`${project.name.replace("/", "")} project preview`}
+                    fill
+                    sizes="(max-width: 767px) 100vw, 180px"
+                    className="project-preview-image"
+                  />
+                </div>
+              </div>
               <span className="project-arrow">-&gt;</span>
             </div>
           </motion.a>
