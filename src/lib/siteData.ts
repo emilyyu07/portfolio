@@ -62,7 +62,7 @@ export const siteData = {
     {
       name: "portfolio/",
       stack: "Next.js, TypeScript, Tailwind",
-      description: "this portfolio website!",
+      description: "this current website!",
       descriptionTbd: true,
       href: "https://github.com/emilyyu07/portfolio.git",
       previewName: "portfolio",

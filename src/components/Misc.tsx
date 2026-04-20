@@ -261,7 +261,7 @@ export function Misc() {
           display: block;
           width: 100%;
           height: auto;
-          filter: none;
+          filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.24));
           user-select: none;
           -webkit-user-drag: none;
         }
