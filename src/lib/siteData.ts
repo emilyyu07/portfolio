@@ -4,14 +4,26 @@ export const siteData = {
     "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80",
   heroLines: [
     "computer engineering @ university of waterloo",
-    "open to fall 2026 internships!",
+    "incoming swe intern at bmo capital markets!",
   ],
   intro:
     "hi, i'm emily! i'm a computer engineering student at the university of waterloo focused on full-stack development and exploring AI/ML. i love to learn new technologies, build, and grow through the process. i'm always open to chat and connect, so feel free to reach out!",
   experiences: [
     {
+      role: "software engineer intern",
+      subtext: "data cognition team",
+      company: "bmo capital markets",
+      timeFrame: "incoming fall 2026",
+    },
+    {
+      role: "ai automation engineer",
+      subtext: "autonomous ai pipelines",
+      company: "edvisingu ai",
+      timeFrame: "may 2026 - present",
+    },
+    {
       role: "software developer intern",
-      subtext: "internal tools",
+      subtext: "internal tooling",
       company: "skyjack inc.",
       timeFrame: "jan 2026 - may 2026",
     },
