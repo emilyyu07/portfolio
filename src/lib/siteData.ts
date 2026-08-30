@@ -34,7 +34,7 @@ export const siteData = {
       timeFrame: "jan 2026 - present",
     },
     {
-      role: "ios developer",
+      role: "i developer",
       subtext: "mental health + wellness apps",
       company: "career education council",
       timeFrame: "jun 2024 - aug 2024",

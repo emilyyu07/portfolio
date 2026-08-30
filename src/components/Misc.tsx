@@ -19,7 +19,7 @@ const sectionReveal = {
 const miscConfig = {
   stravaProfileUrl: "https://www.strava.com/athletes/173030401",
   stravaUsername: "@emilyyu",
-  lastStravaActivity: null,
+  //lastStravaActivity: null,
 } as const;
 
 const assetConfig = {
@@ -126,7 +126,7 @@ export function Misc() {
               shoesAlt={assetConfig.hokas.alt}
               stravaProfileUrl={miscConfig.stravaProfileUrl}
               stravaUsername={miscConfig.stravaUsername}
-              lastActivity={miscConfig.lastStravaActivity}
+              // lastActivity={miscConfig.lastStravaActivity}
             />
           </div>
 
