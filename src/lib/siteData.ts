@@ -34,7 +34,7 @@ export const siteData = {
       timeFrame: "jan 2026 - present",
     },
     {
-      role: "i developer",
+      role: "ios developer",
       subtext: "mental health + wellness apps",
       company: "career education council",
       timeFrame: "jun 2024 - aug 2024",
@@ -42,7 +42,7 @@ export const siteData = {
   ],
   projects: [
     {
-      name: "price-delta/",
+      name: "pricedelta/",
       stack: "Node.js, TypeScript, PostgreSQL, Redis",
       description:
         "an automated price intelligence engine that scrapes retail pages on a schedule and delivers real-time alerts when your target price is hit.",
