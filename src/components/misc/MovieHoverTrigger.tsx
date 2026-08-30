@@ -8,6 +8,7 @@ import { favoriteMovies, letterboxdProfileUrl } from "@/lib/config";
 const movies: Movie[] = favoriteMovies.map((movie) => ({
   title: movie.title,
   cover: movie.cover,
+  letterboxd: movie.letterboxd,
 }));
 
 type MovieHoverTriggerProps = {

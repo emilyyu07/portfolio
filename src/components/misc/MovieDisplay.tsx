@@ -5,6 +5,7 @@ import { useState } from "react";
 type Movie = {
   title: string;
   cover: string;
+  letterboxd?: string;
 };
 
 type MovieDisplayProps = {
@@ -14,7 +15,7 @@ type MovieDisplayProps = {
 export default function MovieDisplay({ movie }: MovieDisplayProps) {
   const [coverMissing, setCoverMissing] = useState(!movie.cover);
 
-  return (
+  const content = (
     <div className="movie-display">
       {coverMissing ? (
         <div className="movie-cover movie-cover-fallback" aria-hidden="true" />
@@ -33,6 +34,21 @@ export default function MovieDisplay({ movie }: MovieDisplayProps) {
       </p>
     </div>
   );
+
+  if (movie.letterboxd) {
+    return (
+      <a
+        href={movie.letterboxd}
+        target="_blank"
+        rel="noreferrer"
+        className="movie-film-link"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return content;
 }
 
 export type { Movie };

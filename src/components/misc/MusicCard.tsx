@@ -58,22 +58,25 @@ export default function MusicCard({ songs }: MusicCardProps) {
   };
 
   return (
-    <article className="airpods-music-card">
-      <a
-        href="https://open.spotify.com"
-        target="_blank"
-        rel="noreferrer"
-        className="airpods-music-spotify-logo"
-        aria-label="Open Spotify"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/spotify-logo.svg"
-          alt=""
-          className="airpods-music-spotify-mark"
-          draggable={false}
-        />
-      </a>
+    <article className="airpods-music-card" onClick={(e) => e.stopPropagation()}>
+      <div className="airpods-music-header">
+        <a
+          href="https://open.spotify.com"
+          target="_blank"
+          rel="noreferrer"
+          className="airpods-music-spotify-logo"
+          aria-label="Open Spotify"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/spotify-logo.svg"
+            alt=""
+            className="airpods-music-spotify-mark"
+            draggable={false}
+          />
+        </a>
+        <span className="airpods-music-playlist-label">favourites</span>
+      </div>
 
       <SongDisplay key={`${song.title}-${currentIndex}`} song={song} />
 

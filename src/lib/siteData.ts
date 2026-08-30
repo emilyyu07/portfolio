@@ -4,7 +4,7 @@ export const siteData = {
     "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80",
   heroLines: [
     "computer engineering @ university of waterloo",
-    "incoming swe intern at bmo capital markets!",
+    "seeking summer 2027 internships!",
   ],
   intro:
     "hi, i'm emily! i'm a computer engineering student at the university of waterloo focused on full-stack development and exploring AI/ML. i love to learn new technologies, build, and grow through the process. i'm always open to chat and connect, so feel free to reach out!",
@@ -13,7 +13,7 @@ export const siteData = {
       role: "software engineer intern",
       subtext: "data cognition team",
       company: "bmo capital markets",
-      timeFrame: "incoming fall 2026",
+      timeFrame: "sept 2026 - present",
     },
     {
       role: "ai automation engineer",

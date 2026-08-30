@@ -43,22 +43,25 @@ export default function MovieCard({ movies, profileUrl }: MovieCardProps) {
     movies.length > 1 ? (currentIndex / (movies.length - 1)) * 100 : 100;
 
   return (
-    <article className="movie-card">
-      <a
-        href={profileUrl ?? "https://letterboxd.com"}
-        target="_blank"
-        rel="noreferrer"
-        className="movie-letterboxd-logo"
-        aria-label="Open Letterboxd"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/letterboxd-logo.svg"
-          alt=""
-          className="movie-letterboxd-mark"
-          draggable={false}
-        />
-      </a>
+    <article className="movie-card" onClick={(e) => e.stopPropagation()}>
+      <div className="movie-card-header">
+        <a
+          href={profileUrl ?? "https://letterboxd.com"}
+          target="_blank"
+          rel="noreferrer"
+          className="movie-letterboxd-logo"
+          aria-label="Open Letterboxd"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/letterboxd-logo.svg"
+            alt=""
+            className="movie-letterboxd-mark"
+            draggable={false}
+          />
+        </a>
+        <span className="movie-playlist-label">favourites</span>
+      </div>
 
       <MovieDisplay key={`${movie.title}-${currentIndex}`} movie={movie} />
 

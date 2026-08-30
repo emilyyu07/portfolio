@@ -6,6 +6,7 @@ type Song = {
   title: string;
   artist: string;
   cover: string;
+  spotify?: string;
 };
 
 type SongDisplayProps = {
@@ -15,7 +16,7 @@ type SongDisplayProps = {
 export default function SongDisplay({ song }: SongDisplayProps) {
   const [coverMissing, setCoverMissing] = useState(false);
 
-  return (
+  const content = (
     <div className="airpods-song-display">
       {coverMissing ? (
         <div className="airpods-song-cover airpods-song-cover-fallback" aria-hidden="true" />
@@ -37,6 +38,21 @@ export default function SongDisplay({ song }: SongDisplayProps) {
       </p>
     </div>
   );
+
+  if (song.spotify) {
+    return (
+      <a
+        href={song.spotify}
+        target="_blank"
+        rel="noreferrer"
+        className="airpods-song-link"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return content;
 }
 
 export type { Song };

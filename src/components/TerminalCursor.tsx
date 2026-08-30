@@ -41,19 +41,21 @@ export function TerminalCursor() {
     let rafId = 0;
 
     const setIdleState = () => {
+      cursor.classList.remove("is-active");
       cursor.textContent = "_";
       cursor.style.animationPlayState = "running";
       cursor.style.opacity = "1";
     };
 
     const setActiveState = () => {
-      cursor.textContent = "▌";
+      cursor.classList.add("is-active");
+      cursor.textContent = "";
       cursor.style.animationPlayState = "paused";
       cursor.style.opacity = "1";
     };
 
     const updatePosition = () => {
-      cursor.style.transform = `translate(${mouseX}px, ${mouseY - 13}px)`;
+      cursor.style.transform = `translate(${mouseX}px, ${mouseY - 60}px)`;
       rafId = window.requestAnimationFrame(updatePosition);
     };
 

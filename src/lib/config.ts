@@ -84,16 +84,6 @@ export const spotifySongs: SpotifySong[] = [
     progress: 72,
   },
   {
-    title: "All Too Well (Taylor's Version)",
-    artist: "Taylor Swift",
-    color: "#20203f",
-    accent: "#a39fd7",
-    imageUrl: "/songs/9.jpg",
-    spotify:
-      "https://open.spotify.com/search/All%20Too%20Well%20Taylor%27s%20Version",
-    progress: 81,
-  },
-  {
     title: "Everywhere, Everything",
     artist: "Noah Kahan, Gracie Abrams",
     color: "#222b2c",
@@ -113,21 +103,118 @@ export const spotifySongs: SpotifySong[] = [
       "https://open.spotify.com/search/No.%201%20Party%20Anthem%20Arctic%20Monkeys",
     progress: 100,
   },
+  {
+    title: "Radio",
+    artist: "Lana Del Rey",
+    color: "#1d1a22",
+    accent: "#d7b0a0",
+    imageUrl: "/songs/12.jpg",
+    spotify: "https://open.spotify.com/search/Radio%20Lana%20Del%20Rey",
+    progress: 12,
+  },
+  {
+    title: "Redbone",
+    artist: "Childish Gambino",
+    color: "#1c2620",
+    accent: "#d1a06d",
+    imageUrl: "/songs/13.jpg",
+    spotify: "https://open.spotify.com/search/Redbone%20Childish%20Gambino",
+    progress: 22,
+  },
+  {
+    title: "If I Knew",
+    artist: "Bruno Mars",
+    color: "#211b28",
+    accent: "#bfa9d7",
+    imageUrl: "/songs/14.jpg",
+    spotify: "https://open.spotify.com/search/If%20I%20Knew%20Bruno%20Mars",
+    progress: 34,
+  },
+  {
+    title: "About You",
+    artist: "the 1975",
+    color: "#1a1d2d",
+    accent: "#a9b6d6",
+    imageUrl: "/songs/15.jpg",
+    spotify: "https://open.spotify.com/search/About%20You%20the%201975",
+    progress: 48,
+  },
+  {
+    title: "For Emma",
+    artist: "Bon Iver",
+    color: "#1c2422",
+    accent: "#b9d0c4",
+    imageUrl: "/songs/16.jpg",
+    spotify: "https://open.spotify.com/search/For%20Emma%20Bon%20Iver",
+    progress: 62,
+  },
+  {
+    title: "Float",
+    artist: "Olivia Dean",
+    color: "#1f1a20",
+    accent: "#d3b2d7",
+    imageUrl: "/songs/17.jpg",
+    spotify: "https://open.spotify.com/search/Float%20Olivia%20Dean",
+    progress: 76,
+  },
+  {
+    title: "Coming Home",
+    artist: "Leon Bridges",
+    color: "#182330",
+    accent: "#b9c8d8",
+    imageUrl: "/songs/18.jpg",
+    spotify: "https://open.spotify.com/search/Coming%20Home%20Leon%20Bridges",
+    progress: 89,
+  },
 ];
 
 export type FavoriteMovie = {
   title: string;
   cover: string;
+  letterboxd: string;
 };
 
 export const letterboxdProfileUrl = "https://letterboxd.com";
 
 export const favoriteMovies: FavoriteMovie[] = [
-  { title: "Get Out", cover: "/movies/1.jpg" },
-  { title: "Lady Bird", cover: "/movies/2.jpg" },
-  { title: "The Perks of Being a Wallflower", cover: "/movies/3.jpg" },
-  { title: "Interstellar", cover: "/movies/4.jpg" },
-  { title: "Little Women", cover: "/movies/5.jpg" },
-  { title: "How to Lose a Guy in 10 Days", cover: "/movies/6.jpg" },
-  { title: "La La Land", cover: "/movies/7.jpg" },
+  {
+    title: "Get Out",
+    cover: "/movies/1.jpg",
+    letterboxd: "https://letterboxd.com/film/get-out-2017/",
+  },
+  {
+    title: "Lady Bird",
+    cover: "/movies/2.jpg",
+    letterboxd: "https://letterboxd.com/film/lady-bird/",
+  },
+  {
+    title: "The Perks of Being a Wallflower",
+    cover: "/movies/3.jpg",
+    letterboxd: "https://letterboxd.com/film/the-perks-of-being-a-wallflower/",
+  },
+  {
+    title: "Interstellar",
+    cover: "/movies/4.jpg",
+    letterboxd: "https://letterboxd.com/film/interstellar/",
+  },
+  {
+    title: "Little Women",
+    cover: "/movies/5.jpg",
+    letterboxd: "https://letterboxd.com/film/little-women-2019/",
+  },
+  {
+    title: "How to Lose a Guy in 10 Days",
+    cover: "/movies/6.jpg",
+    letterboxd: "https://letterboxd.com/film/how-to-lose-a-guy-in-10-days/",
+  },
+  {
+    title: "La La Land",
+    cover: "/movies/7.jpg",
+    letterboxd: "https://letterboxd.com/film/la-la-land/",
+  },
+  {
+    title: "Superbad",
+    cover: "/movies/8.jpg",
+    letterboxd: "https://letterboxd.com/film/superbad/",
+  },
 ];
