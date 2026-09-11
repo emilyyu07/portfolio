@@ -42,14 +42,14 @@ export const siteData = {
   ],
   projects: [
     {
-      name: "pricedelta/",
-      stack: "Node.js, TypeScript, PostgreSQL, Redis",
+      name: "marketcheck/",
+      stack: "Python, Polars, Typer, Pydantic",
       description:
-        "an automated price intelligence engine that scrapes retail pages on a schedule and delivers real-time alerts when your target price is hit.",
+        " a command-line data quality auditor that catches gaps, bad ticks, and split artifacts in historical us-equity ohlcv data — and never reports a check it couldn't run as a pass.",
       descriptionTbd: true,
-      href: "https://github.com/emilyyu07/price-delta.git",
-      previewName: "price-delta",
-      previewImage: "/project/price-delta.png",
+      href: "https://github.com/emilyyu07/marketcheck.git",
+      previewName: "marketcheck",
+      previewImage: "/project/marketcheck.png",
     },
     {
       name: "strider/",
@@ -61,6 +61,17 @@ export const siteData = {
       previewName: "strider",
       previewImage: "/project/strider.png",
     },
+    {
+      name: "pricedelta/",
+      stack: "Node.js, TypeScript, PostgreSQL, Redis",
+      description:
+        "an automated price intelligence engine that scrapes retail pages on a schedule and delivers real-time alerts when your target price is hit.",
+      descriptionTbd: true,
+      href: "https://github.com/emilyyu07/price-delta.git",
+      previewName: "price-delta",
+      previewImage: "/project/price-delta.png",
+    },
+
     {
       name: "new-guelph-times-games/",
       stack: "Java, React",
