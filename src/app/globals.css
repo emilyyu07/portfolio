@@ -742,24 +742,19 @@ img {
   width: 238px;
   padding: 12px 14px 11px;
   border-radius: 18px;
-  border: 1px solid var(--border);
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, #fff 10%, transparent) 0%,
-      transparent 20%
-    ),
-    color-mix(in srgb, var(--bg) 82%, transparent);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(10px) saturate(104%);
-  -webkit-backdrop-filter: blur(10px) saturate(104%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #1a1a1a;
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.5),
+    0 0 0 0.5px rgba(255, 255, 255, 0.06) inset;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   opacity: 0;
   pointer-events: none;
   transform: translateY(-50%) translateX(8px) scale(0.97);
   transition:
     opacity 0.24s ease,
-    transform 0.24s ease,
-    background 0.28s ease;
+    transform 0.24s ease;
 }
 
 .hokas-hover-trigger:hover .hokas-strava-card {
@@ -795,7 +790,7 @@ img {
   align-items: flex-start;
   gap: 5px;
   text-decoration: none;
-  color: var(--text);
+  color: #ffffff;
 }
 
 .hokas-strava-wordmark {
@@ -803,6 +798,8 @@ img {
   width: auto;
   height: 14px;
   object-fit: contain;
+  /* Strava wordmark is orange — render it faithfully on dark bg */
+  filter: none;
 }
 
 .hokas-strava-username {
@@ -810,16 +807,17 @@ img {
   font-size: 14px;
   font-weight: 600;
   line-height: 1.2;
+  color: #ffffff;
 }
 
 .hokas-strava-cta {
   font-family: var(--font-body);
   font-size: 12px;
-  color: color-mix(in srgb, var(--text) 68%, transparent);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .hokas-strava-link:hover .hokas-strava-cta {
-  color: var(--text);
+  color: #FC4C02;
 }
 
 .movie-hover-trigger {
