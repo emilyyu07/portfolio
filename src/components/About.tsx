@@ -66,7 +66,7 @@ export function About() {
             className="grid gap-5 border-b border-[var(--border)] pb-7 md:grid-cols-[1.35fr_0.9fr] md:items-start"
           >
             <div>
-              <p className="courier-text text-[0.92rem] tracking-[0.18em] text-[var(--text)]">
+              <p className="courier-text text-[1rem] tracking-[0.18em] text-[var(--text)]">
                 {">_"} {experience.role}
               </p>
               <p className="meta-text pl-8 pt-3">{experience.subtext}</p>
