@@ -11,7 +11,7 @@ export const siteData = {
   experiences: [
     {
       role: "software engineer intern",
-      subtext: "data cognition team",
+      subtext: "market data tools for trading",
       company: "bmo capital markets",
       timeFrame: "sept 2026 - present",
     },
